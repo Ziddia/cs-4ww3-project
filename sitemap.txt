@@ -1,0 +1,14 @@
+All pages should have some options in a navbar - the options should be different depending on whether the user is logged in or not. but this isn't something that will matter for part 1.
+- If user is not logged in, show options for Log In, Register, Search Objects.
+- If user is logged in, show options for Log Out, Search Objects, Submit Object.
+
+
+index.html - Home page, provide overview of functionality.
+-- this should be reachable from navbar (e.g. clicking on logo?)
+search.html - Allows any user (logged in or not) to search for objects by different criteria.
+-- required to search by name and rating, but I would also like to search by location or other options
+-- this will be accessible by navbar at all times
+results_sample.html - Sample results from a search
+individual_sample.html
+submission.html
+registration.html
