@@ -5,10 +5,25 @@ All pages should have some options in a navbar - the options should be different
 
 index.html - Home page, provide overview of functionality.
 -- this should be reachable from navbar (e.g. clicking on logo?)
+
 search.html - Allows any user (logged in or not) to search for objects by different criteria.
 -- required to search by name and rating, but I would also like to search by location or other options
 -- this will be accessible by navbar at all times
-results_sample.html - Sample results from a search
-individual_sample.html
-submission.html
-registration.html
+-- running a search from this page would take to results.html (or results_sample.html in A1)
+
+results_sample.html - Sample results from a search from search.html
+-- Displays a listing of all objects matching the search with a click-through link to individual.html (individual_sample.html in A1)
+-- Should probably have methods to filter down the remaining objects further.
+-- Needs to show results on a map (google maps API?)
+
+individual_sample.html - Sample individual object details from a result in results.html (results_sample.html)
+-- Should display object details, ratings, reviews... plus map of object location
+
+submission.html - Method to submit a new object to the database, reachable via navbar
+-- Should be a simple form, to submit a new object
+-- Some sort of checking would need to be implemented to identify duplicates
+-- Should redirect to the object after it's submitted successfully
+
+registration.html - Register an account, reachable via navbar
+
+login.html - Log in to account, reachable via navbar
