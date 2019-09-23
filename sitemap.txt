@@ -1,3 +1,5 @@
+Visual sitemap: https://www.gloomaps.com/toRW7VFTYs
+
 All pages should have some options in a navbar - the options should be different depending on whether the user is logged in or not. but this isn't something that will matter for part 1.
 - If user is not logged in, show options for Log In, Register, Search Objects.
 - If user is logged in, show options for Log Out, Search Objects, Submit Object.
