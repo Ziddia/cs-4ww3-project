@@ -27,3 +27,4 @@ submission.html - Method to submit a new object to the database, reachable via n
 registration.html - Register an account, reachable via navbar
 
 login.html - Log in to account, reachable via navbar
+-- might not be needed past A1, if JS solutions are better
