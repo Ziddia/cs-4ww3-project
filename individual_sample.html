@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Sample Selected Object</title>
+	<title>Sample Object</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="static/base.css">
 	<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
@@ -35,22 +35,9 @@
 		
 		<!-- Page title, links backwards to home page. -->
 		<div class="title">
-			<a href="index.html"><h1>Header Sample Location</h1></a>
+			<a href="index.html"><h1>Header Sample Individual</h1></a>
 		</div>
 	</header>
-
-	<!-- Navbars also need to selectively display based on screen width,
-		a regular sidebar menu is shown for desktop.
-	 -->
-	<nav class="not-mobile">
-		<ul>
-			<li><a href="login.html">Log In</a></li>
-			<li><a href="#">Log Out</a></li>
-			<li><a href="registration.html">Register</a></li>
-			<li><a href="search.html">Search Objects</a></li>
-			<li><a href="submission.html">Submit Object</a></li>
-		</ul>
-	</nav>
 
 	<!-- 'hack' I got the concept for from https://web.archive.org/web/20120929010042/http://csscience.com/css3-tabs/#tabC
 
@@ -80,9 +67,34 @@
 	</div>
 
 	<!-- Main page content -->
-	<content>
-		<h1>content</h1>
-	</content>
+	<div class="mobile">
+		<content>
+			<a href="#close-front">
+				<div class="content-div">
+					<h1>content</h1>
+				</div>
+			</a>
+		</content>
+	</div>
+
+	<div class="not-mobile">
+		<!-- Navbars also need to selectively display based on screen width,
+			a regular sidebar menu is shown for desktop.
+		 -->
+		<nav>
+			<ul>
+				<li><a href="login.html">Log In</a></li>
+				<li><a href="#">Log Out</a></li>
+				<li><a href="registration.html">Register</a></li>
+				<li><a href="search.html">Search Objects</a></li>
+				<li><a href="submission.html">Submit Object</a></li>
+			</ul>
+		</nav>
+		
+		<content>
+			<h1>content</h1>
+		</content>
+	</div>
 
 	<!-- gonna use this for a login popup box -->
 	<div class="login-overlay" id="login">

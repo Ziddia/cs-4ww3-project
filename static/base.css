@@ -3,13 +3,16 @@
   width: device-width;
 }
 
+/* Using flex layouts so apply to whole body */
 body {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
 }
 
-/* adjusted this for mobile first (change height to match iphone 7) */
+/* adjusted this for mobile first 
+   basically defining a height for xs devices, we will scale with media queries further down
+ */
 header {
 	width: 100%;
 	height: 7em;
@@ -34,9 +37,10 @@ header {
 	margin-top: 0.2em;
 }
 
+/* Adjusted the spacing for buttons in mobile slightly */
 .headerButtons {
 	display: flex;
-	flex-direction: row;
+	flex-direction: row-reverse;
 	margin-top: 0.3em;
 	margin-right: 0.3em;
 }
@@ -61,10 +65,10 @@ header {
 	}
 }
 
+/* Navbar */
 nav {
 	width: 20%;
 	display: flex;
-	background-color: red;
 }
 
 nav ul {
@@ -75,6 +79,7 @@ nav ul {
 	background-color: #f1f1f1;
 }
 
+/* Main page content, need to have width:100% for mobile display */
 content {
 	width: 100%;
 	height: 500px;
@@ -84,10 +89,12 @@ content {
 	background-color: lightblue;
 }
 
+/* Navbar on mobile hidden by default */
 .mobile-navbar {
 	display: none;
 }
 
+/* Animate the navbar sliding down when the hamburger is clicked */
 #front:target ~ .navbar-close > nav {
 	display: block;
 	max-height: 100vh;
@@ -99,6 +106,7 @@ content {
 	animation-duration: 0.5s;
 }
 
+/* Outer element from the mobile-navbar, need it to be max-height:100vh to animate from 100 to 0 */
 .navbar-close {
 	width: 100%;
 	max-height: 100vh;
@@ -133,36 +141,36 @@ content {
 	}
 }
 
-.not-mobile {
-	display: none;
-}
-
 .mobile-buttons {
 	margin-left:auto;
 }
 
 .mobile-nav {
-	margin-left: 0.8em;
 	margin-top: 0.4em;
+	margin-left: 1em;
+}
+
+.not-mobile {
+	display: none;
 }
 
 .mobile {
 	display: flex;
-	flex-direction: row;
 	width: 100%;
+}
+
+.desktop-buttons {
+	margin-left: auto;
 }
 
 @media (min-width: 576px) {
 	.not-mobile {
 		display: flex;
+		width: 100%;
 	}
 
 	.mobile {
 		display: none;
-	}
-
-	.headerButtons {
-		flex-direction: row-reverse;
 	}
 
 	content {
@@ -199,4 +207,13 @@ li a:hover{
 	top: 0;
 	left: 0;
 	display: block;
+}
+
+.content-div {
+	width: 100%;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: lightblue;
 }
