@@ -66,6 +66,25 @@
 		</nav>
 	</div>
 
+	 <!-- gonna use this for a login popup box -->
+	<span class="target-fix" id="login"></span>
+	<span class="target-fix" id="close-login"></span>
+	<div class="login-close">
+		<div class="login-overlay" id="login">
+			<div class="login-box">
+				<div class="padding-login-form">
+					<h3>Log In<span class="button-closelogin"><a href="#close-login">&times;</a></span></h3>
+					<label for="username">Username:</label>
+					<input class="form-control" type="text" id="username">
+					<label for="password">Password:</label>
+					<input class="form-control" type="password" id="password">
+					<br/>
+					<button type="submit" class="btn btn-secondary">Go</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Main page content -->
 	<div class="mobile">
 		<content>
@@ -94,10 +113,6 @@
 		<content>
 			<h1>content</h1>
 		</content>
-	</div>
-
-	<!-- gonna use this for a login popup box -->
-	<div class="login-overlay" id="login">
 	</div>
 
 	<!-- <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script> -->

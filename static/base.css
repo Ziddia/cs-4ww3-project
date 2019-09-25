@@ -21,6 +21,18 @@ header {
 	background-color: green;
 }
 
+/* These are used to selectively display content on mobile/non-mobile devices
+   The settings will be overwritten by media queries below.
+ */
+.not-mobile {
+	display: none;
+}
+
+.mobile {
+	display: flex;
+	width: 100%;
+}
+
 .title {
 	display: flex;
 	justify-content: center;
@@ -47,22 +59,6 @@ header {
 
 .headerButtons button {
 	margin: 0.2em;
-}
-
-/* this accounts for all devices with screen width > 576px (increase header font, increase header height) */
-@media (min-width: 576px) {
-	.title h1 {
-		font-size: 3em;
-		margin-top: 0em;
-	}
-
-	header {
-		height: 10em;
-	}
-
-	.headerButtons button {
-		margin: 0.5em;
-	}
 }
 
 /* Navbar */
@@ -95,7 +91,7 @@ content {
 }
 
 /* Animate the navbar sliding down when the hamburger is clicked */
-#front:target ~ .navbar-close > nav {
+#front:target ~ .navbar-close > .mobile-navbar {
 	display: block;
 	max-height: 100vh;
 	overflow: hidden;
@@ -112,7 +108,8 @@ content {
 	max-height: 100vh;
 }
 
-#close-front:target ~ .navbar-close > nav {
+/* Animate closing the navbar by sliding it up */
+#close-front:target ~ .navbar-close > .mobile-navbar {
 	width: 100%;
 	max-height: 0vh;
 	overflow: hidden;
@@ -123,6 +120,7 @@ content {
 	animation-duration: 0.5s;
 }
 
+/* Keyframes for animation, I think they're actually unnecessary for this one but are for some of the other transitions */
 @keyframes slideDownNavbar {
 	0% {
 		max-height: 0vh;
@@ -141,28 +139,22 @@ content {
 	}
 }
 
+/* Header button styling (i.e. hamburger, login button) */
 .mobile-buttons {
 	margin-left:auto;
-}
-
-.mobile-nav {
-	margin-top: 0.4em;
-	margin-left: 1em;
-}
-
-.not-mobile {
-	display: none;
-}
-
-.mobile {
-	display: flex;
-	width: 100%;
 }
 
 .desktop-buttons {
 	margin-left: auto;
 }
 
+/* Just a little bit of movement of the hamburger icon */
+.mobile-nav {
+	margin-top: 0.4em;
+	margin-left: 1em;
+}
+
+/* Adjust styling as needed for non-mobile devices */
 @media (min-width: 576px) {
 	.not-mobile {
 		display: flex;
@@ -176,8 +168,22 @@ content {
 	content {
 		width: 80%;
 	}
+
+	.title h1 {
+		font-size: 3em;
+		margin-top: 0em;
+	}
+
+	header {
+		height: 10em;
+	}
+
+	.headerButtons button {
+		margin: 0.5em;
+	}
 }
 
+/* Some styling for list items in the navbar */
 li a {
 	display: block;
 	color: #000;
@@ -191,6 +197,7 @@ li a:hover{
 	color: white;
 }
 
+/* Active list item */
 .active {
 	background-color: #4CAF50;
 	color: white;
@@ -202,6 +209,7 @@ li a:hover{
 	color: white;
 }
 
+/* Used for the hack for CSS transitions causing the screen to 'jump' */
 .target-fix {
 	position: fixed;
 	top: 0;
@@ -209,6 +217,7 @@ li a:hover{
 	display: block;
 }
 
+/* Used this to work around an issue with .mobile applying weird styling */
 .content-div {
 	width: 100%;
 	height: 500px;
@@ -216,4 +225,143 @@ li a:hover{
 	justify-content: center;
 	align-items: center;
 	background-color: lightblue;
+}
+
+/* All the below are related to animating the 'login' modal */
+.login-box {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	max-height: 0vh;
+}
+
+.padding-login-form {
+	margin: 2em;
+}
+
+.button-closelogin {
+	float: right;
+}
+
+.login-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	max-height: 0vh;
+	background-color: grey;
+	background-color: rgba(0.3,0.3,0.3,0);
+	display:none;
+}
+
+#login:target ~ .login-close > .login-overlay {
+	max-height: 100vh;
+	overflow: hidden;
+	display: block;
+	background-color: rgba(0.3,0.3,0.3,0.5);
+	animation-name: showLoginPanel;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+
+#login:target ~ .login-close > .login-overlay > .login-box {
+	max-height: 100vh;
+	overflow: hidden;
+	display: block;
+	opacity: 1.0;
+	animation-name: showLoginBox;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+
+.login-close {
+	background-color: rgba(0.3,0.3,0.3,0.5);
+	max-height: 100vh;
+}
+
+#close-login:target ~ .login-close > .login-overlay {
+	background-color: rgba(0.3,0.3,0.3,0);
+	max-height: 0vh;
+	overflow: hidden;
+	display: block;
+	animation-name: hideLoginPanel;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+	animation-duration: 0.5s;
+}
+
+#close-login:target ~ .login-close > .login-overlay > .login-box {
+	opacity: 0;
+	max-height: 0vh;
+	overflow: hidden;
+	display: block;
+	animation-name: hideLoginBox;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+	animation-duration: 0.5s;
+}
+
+@keyframes showLoginPanel {
+	0% {
+		background-color: rgba(0.3,0.3,0.3,0);
+		max-height: 0vh;
+	}
+	50% {
+		background-color: rgba(0.3,0.3,0.3,0);
+		max-height: 100vh;
+	}
+	100% {
+		background-color: rgba(0.3,0.3,0.3,0.5);
+		max-height: 100vh;
+	}
+}
+
+@keyframes hideLoginPanel {
+	0% {
+		background-color: rgba(0.3,0.3,0.3,0.5);
+		max-height: 100vh;
+	}
+	50% {
+		background-color: rgba(0.3,0.3,0.3,0);
+		max-height: 100vh;
+	}
+	100% {
+		background-color: rgba(0.3,0.3,0.3,0);
+		max-height: 0vh;
+	}
+}
+
+@keyframes showLoginBox {
+	0% {
+		opacity: 0;
+		max-height: 0vh;
+	}
+	50% {
+		opacity: 0;
+		max-height: 100vh;
+	}
+	100% {
+		opacity: 1.0;
+		max-height: 100vh;
+	}
+}
+
+@keyframes hideLoginBox {
+	0% {
+		opacity: 1.0;
+		max-height: 100vh;
+	}
+	50% {
+		opacity: 0;
+		max-height: 100vh;
+	}
+	100% {
+		opacity: 0;
+		max-height: 0vh;
+	}
 }
