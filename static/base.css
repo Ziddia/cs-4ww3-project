@@ -12,7 +12,7 @@ body {
 /* adjusted this for mobile first (change height to match iphone 7) */
 header {
 	width: 100%;
-	height: 8em;
+	height: 7em;
 	display: flex;
 	flex-direction: column;
 	background-color: green;
@@ -31,26 +31,34 @@ header {
 /* header height for xs devices (below 576px width) */
 .title h1 {
 	font-size: 1.8em;
+	margin-top: 0.2em;
+}
+
+.headerButtons {
+	display: flex;
+	flex-direction: row-reverse;
+	margin-top: 0.3em;
+	margin-right: 0.3em;
+}
+
+.headerButtons button {
+	margin: 0.2em;
 }
 
 /* this accounts for all devices with screen width > 576px (increase header font, increase header height) */
 @media (min-width: 576px) {
 	.title h1 {
 		font-size: 3em;
+		margin-top: 0em;
 	}
 
 	header {
 		height: 10em;
 	}
-}
 
-.headerButtons {
-	display: flex;
-	flex-direction: row-reverse;
-}
-
-.headerButtons button {
-	margin: 0.5em;
+	.headerButtons button {
+		margin: 0.5em;
+	}
 }
 
 nav {
@@ -58,12 +66,36 @@ nav {
 	display: flex;
 	background-color: red;
 }
+
 nav ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	background-color: #f1f1f1;
+}
+
+content {
+	width: 100%;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: lightblue;
+}
+
+.not-mobile {
+	display: none;
+}
+
+@media (min-width: 576px) {
+	.not-mobile {
+		display: flex;
+	}
+
+	content {
+		width: 80%;
+	}
 }
 
 li a {
@@ -88,13 +120,4 @@ li a:hover{
 .active:hover {
 	background-color: #4CAF50;
 	color: white;
-}
-
-content {
-	width: 80%;
-	height: 500px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: lightblue;
 }
