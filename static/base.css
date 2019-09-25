@@ -36,7 +36,7 @@ header {
 
 .headerButtons {
 	display: flex;
-	flex-direction: row-reverse;
+	flex-direction: row;
 	margin-top: 0.3em;
 	margin-right: 0.3em;
 }
@@ -84,13 +84,60 @@ content {
 	background-color: lightblue;
 }
 
+.mobile-navbar {
+	display: none;
+}
+
+.mobile-navbar:target {
+	display: block;
+	max-height: 100vh;
+	overflow: hidden;
+	width: 100% !important;
+	animation-name: slideDownNavbar;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+
+@keyframes slideDownNavbar {
+	0% {
+		max-height: 0vh;
+	}
+	100% {
+		max-height: 100vh;
+	}
+}
+
 .not-mobile {
 	display: none;
+}
+
+.mobile-buttons {
+	margin-left:auto;
+}
+
+.mobile-nav {
+	margin-left: 0.8em;
+	margin-top: 0.4em;
+}
+
+.mobile {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
 }
 
 @media (min-width: 576px) {
 	.not-mobile {
 		display: flex;
+	}
+
+	.mobile {
+		display: none;
+	}
+
+	.headerButtons {
+		flex-direction: row-reverse;
 	}
 
 	content {
