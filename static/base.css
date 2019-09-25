@@ -88,7 +88,7 @@ content {
 	display: none;
 }
 
-.mobile-navbar:target {
+#front:target ~ .navbar-close > nav {
 	display: block;
 	max-height: 100vh;
 	overflow: hidden;
@@ -99,12 +99,37 @@ content {
 	animation-duration: 0.5s;
 }
 
+.navbar-close {
+	width: 100%;
+	max-height: 100vh;
+}
+
+#close-front:target ~ .navbar-close > nav {
+	width: 100%;
+	max-height: 0vh;
+	overflow: hidden;
+	display: block;
+	animation-name: slideUpNavbar;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+	animation-duration: 0.5s;
+}
+
 @keyframes slideDownNavbar {
 	0% {
 		max-height: 0vh;
 	}
 	100% {
 		max-height: 100vh;
+	}
+}
+
+@keyframes slideUpNavbar {
+	0% {
+		max-height: 100vh;
+	}
+	100% {
+		max-height: 0vh;
 	}
 }
 
@@ -167,4 +192,11 @@ li a:hover{
 .active:hover {
 	background-color: #4CAF50;
 	color: white;
+}
+
+.target-fix {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: block;
 }
