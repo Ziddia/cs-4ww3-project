@@ -1,0 +1,100 @@
+/* this is for responsive design but might not be needed w Bootstrap css */
+@-ms-viewport{
+  width: device-width;
+}
+
+body {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+/* adjusted this for mobile first (change height to match iphone 7) */
+header {
+	width: 100%;
+	height: 8em;
+	display: flex;
+	flex-direction: column;
+	background-color: green;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+}
+
+.title a, .title a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+/* header height for xs devices (below 576px width) */
+.title h1 {
+	font-size: 1.8em;
+}
+
+/* this accounts for all devices with screen width > 576px (increase header font, increase header height) */
+@media (min-width: 576px) {
+	.title h1 {
+		font-size: 3em;
+	}
+
+	header {
+		height: 10em;
+	}
+}
+
+.headerButtons {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.headerButtons button {
+	margin: 0.5em;
+}
+
+nav {
+	width: 20%;
+	display: flex;
+	background-color: red;
+}
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background-color: #f1f1f1;
+}
+
+li a {
+	display: block;
+	color: #000;
+	padding: 8px 16px;
+	/* added !important to override bootstrap styles applying an underline */
+	text-decoration: none !important;
+}
+
+li a:hover{
+	background-color: #555;
+	color: white;
+}
+
+.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+/* this makes it so the active navbar element can't display as selected. */
+.active:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
+content {
+	width: 80%;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: lightblue;
+}
