@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<title>Rating Site - Sample Results</title>
@@ -52,7 +52,7 @@
 	 -->
 	<span class="target-fix" id="close-front"></span>
 	<span class="target-fix" id="front"></span>
-	<div class="navbar-close mobile">
+	<div class="navbar-close">
 		<nav class="mobile-navbar">
 			<ul>
 				<li><a href="#login">Log In</a></li>
@@ -66,11 +66,21 @@
 		</nav>
 	</div>
 
+	<nav class="desktop-navbar">
+		<ul>
+			<li><a href="#login">Log In</a></li>
+			<li><a href="#">Log Out</a></li>
+			<li><a href="registration.html">Register</a></li>
+			<li><a href="search.html">Search Objects</a></li>
+			<li><a href="submission.html">Submit Object</a></li>
+		</ul>
+	</nav>
+
 	 <!-- gonna use this for a login popup box -->
 	<span class="target-fix" id="login"></span>
 	<span class="target-fix" id="close-login"></span>
 	<div class="login-close">
-		<div class="login-overlay" id="login">
+		<div class="login-overlay">
 			<div class="login-box">
 				<div class="padding-login-form">
 					<h3>Log In<span class="button-closelogin"><a href="#close-login">&times;</a></span></h3>
@@ -86,34 +96,9 @@
 	</div>
 
 	<!-- Main page content -->
-	<div class="mobile">
-		<content>
-			<a href="#close-front">
-				<div class="content-div">
-					<h1>content</h1>
-				</div>
-			</a>
-		</content>
-	</div>
-
-	<div class="not-mobile">
-		<!-- Navbars also need to selectively display based on screen width,
-			a regular sidebar menu is shown for desktop.
-		 -->
-		<nav>
-			<ul>
-				<li><a href="#login">Log In</a></li>
-				<li><a href="#">Log Out</a></li>
-				<li><a href="registration.html">Register</a></li>
-				<li><a href="search.html">Search Objects</a></li>
-				<li><a href="submission.html">Submit Object</a></li>
-			</ul>
-		</nav>
-		
-		<content>
-			<h1>content</h1>
-		</content>
-	</div>
+	<content>
+		<h1>content</h1>
+	</content>
 
 	<!-- <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script> -->
 </body>

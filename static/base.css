@@ -63,7 +63,6 @@ header {
 
 /* Navbar */
 nav {
-	width: 20%;
 	display: flex;
 }
 
@@ -154,11 +153,14 @@ content {
 	margin-left: 1em;
 }
 
+.desktop-navbar {
+	display: none;
+}
+
 /* Adjust styling as needed for non-mobile devices */
 @media (min-width: 576px) {
 	.not-mobile {
 		display: flex;
-		width: 100%;
 	}
 
 	.mobile {
@@ -180,6 +182,15 @@ content {
 
 	.headerButtons button {
 		margin: 0.5em;
+	}
+
+	.navbar-close {
+		display: none !important;
+	}
+
+	.desktop-navbar {
+		display: flex;
+		width: 20%;
 	}
 }
 
