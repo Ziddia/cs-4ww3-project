@@ -85,10 +85,10 @@ nav ul {
 }
 
 /* Main page content, need to have width:100% for mobile display */
-content {
+section {
 	width: 100%;
 	height: 500px;
-	display: flex;
+	display: flex !important;
 	justify-content: center;
 	align-items: center;
 	background-color: lightblue;
@@ -177,7 +177,7 @@ content {
 		display: none;
 	}
 
-	content {
+	section {
 		width: 80%;
 	}
 
