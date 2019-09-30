@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="static/base.css">
 	<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="static/results_sample.css">
 	<!-- need this sheet for hamburger icon for mobile nav -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -97,54 +98,59 @@
 
 	<!-- Main page content -->
 	<section>
-		<div class="px-3" style="width: 100%">
+		<div class="table-div p-3">
 			<h3>Search Results</h3>
+			<div>
+				<table class="table table-striped table-light table-hover m-0">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Rating</th>
+							<th scope="col">Name</th>
+							<th scope="col">Type</th>
+							<th scope="col">City</th>
+							<th scope="col">Province</th>
+							<th scope="col">Temp Link</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>0/5</td>
+							<td>TTC Subway</td>
+							<td>Subway</td>
+							<td>Toronto</td>
+							<td>ON</td>
+							<!-- these temp links are just here to provide a way to get to the individual sample page 
+								once javascript/data is added users will be able to click on a row and go to the corresponding 
+								individual page-->
+							<td><a href="individual_sample.html">individual sample</a></td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td>0/5</td>
+							<td>TTC Street Cars</td>
+							<td>Tram</td>
+							<td>Toronto</td>
+							<td>ON</td>
+							<td><a href="individual_sample.html">individual sample</a></td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td>3/5</td>
+							<td>HSR</td>
+							<td>Bus</td>
+							<td>Hamilton</td>
+							<td>ON</td>
+							<td><a href="individual_sample.html">individual sample</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-			<table class="table table-striped table-light table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Rating</th>
-						<th scope="col">Name</th>
-						<th scope="col">Type</th>
-						<th scope="col">City</th>
-						<th scope="col">Province</th>
-						<th scope="col">Temp Link</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>0/5</td>
-						<td>TTC Subway</td>
-						<td>Subway</td>
-						<td>Toronto</td>
-						<td>ON</td>
-						<!-- these temp links are just here to provide a way to get to the individual sample page 
-							once javascript/data is added users will be able to click on a row and go to the corresponding 
-							individual page-->
-						<td><a href="individual_sample.html">individual sample</a></td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>0/5</td>
-						<td>TTC Street Cars</td>
-						<td>Tram</td>
-						<td>Toronto</td>
-						<td>ON</td>
-						<td><a href="individual_sample.html">individual sample</a></td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>3/5</td>
-						<td>HSR</td>
-						<td>Bus</td>
-						<td>Hamilton</td>
-						<td>ON</td>
-						<td><a href="individual_sample.html">individual sample</a></td>
-					</tr>
-				</tbody>
-			</table>	
+		<div class="px-3 pb-3">
+			<img class="map" src="static/map.png">
 		</div>
 	</section>
 

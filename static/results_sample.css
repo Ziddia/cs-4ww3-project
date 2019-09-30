@@ -5,7 +5,7 @@
 body {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-start;
+	align-items: stretch;
 }
 
 header {
@@ -65,4 +65,23 @@ content {
 	justify-content: center;
 	align-items: center;
 	background-color: lightblue;
+}
+
+.map {
+	width: 100%;
+	height: auto;
+}
+
+.table-div {
+	width: 100%;
+}
+
+@media (max-width: 576px) {
+	.table-div {
+		padding: 3em 0 !important;
+	}
+
+	.table-div div {
+		overflow: auto;
+	}
 }
