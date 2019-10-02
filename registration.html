@@ -99,22 +99,27 @@
 	<section>
 		<h3>Register an Account</h3>
 		<form action="#" method="POST" class="form-buffer">
-			<div class="form-group">
-				<label for="user_email">E-mail Address</label>
-				<input type="email" class="form-control" id="user_email">
+			<div class="form-group row">
+				<label for="user_email" class="col-md-2 col-form-label">E-mail Address</label>
+				<input type="email" class="form-control col-md-10" id="user_email">
 			</div>
-			<div class="form-group">
-				<label for="username">Username</label>
-				<input type="text" class="form-control" id="username">
+			<div class="form-group row">
+				<label for="username" class="col-md-2 col-form-label">Username</label>
+				<input type="text" class="form-control col-md-10" id="username">
 			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<input type="password" class="form-control" id="password">
+			<div class="form-group row">
+				<label for="password" class="col-md-2 col-form-label">Password</label>
+				<input type="password" class="form-control col-md-10" id="password">
 			</div>
-			<div class="form-group">
-				<label for="confirm">Confirm Password</label>
-				<input type="password" class="form-control" id="confirm">
+			<div class="form-group row">
+				<label for="confirm" class="col-md-2 col-form-label">Confirm Password</label>
+				<input type="password" class="form-control col-md-10" id="confirm">
 			</div>
+			<div class="form-check row">
+				<input type="checkbox" class="form-check-input" id="subscribe">
+				<label class="form-check-label" for="subscribe">Subscribe to update e-mails</label>
+			</div>
+			<br/>
 			<button type="submit" class="btn btn-secondary">Register</button>
 		</form>
 	</section>
