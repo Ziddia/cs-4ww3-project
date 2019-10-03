@@ -1,0 +1,7 @@
+.opinion-pane {
+	background-color: lavender;
+	height: 10vh;
+	width: 100%;
+	box-shadow: 2px 2px #888888;
+	margin-bottom: 1.5vh;
+}
