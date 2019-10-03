@@ -176,7 +176,7 @@ section {
 }
 
 /* Adjust styling as needed for non-mobile devices */
-@media (min-width: 576px) {
+@media (min-width: 768px) {
 	.not-mobile {
 		display: flex;
 	}
