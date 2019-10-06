@@ -5,6 +5,7 @@
 	<title>Transit Rating - System Information</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="static/base.css">
+	<!-- using this stylesheet because individual_sample has specific styling on comment boxes -->
 	<link rel="stylesheet" type="text/css" href="static/individual.css">
 	<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
 	<!-- need this sheet for hamburger icon for mobile nav -->
@@ -77,13 +78,15 @@
 		</ul>
 	</nav>
 
-	 <!-- gonna use this for a login popup box -->
+	 <!-- Login popup modal, using the same strategy as the mobile navbar above. -->
 	<span class="target-fix" id="login"></span>
 	<span class="target-fix" id="close-login"></span>
 	<div class="login-close">
 		<div class="login-overlay">
 			<div class="login-box">
 				<div class="padding-login-form">
+					<!-- the .button-closelogin class forces the 'x' icon to float right,
+					this makes it render in a way that's familiar to users -->
 					<h3>Log In<span class="button-closelogin"><a href="#close-login">&times;</a></span></h3>
 					<label for="username">Username:</label>
 					<input class="form-control" type="text" id="username">
@@ -98,25 +101,48 @@
 
 	<!-- Main page content -->
 	<section>
+		<!-- Header will show both the name and the location -->
 		<h3>HSR Bus Line - Hamilton, ON</h3>
+		<!-- Average rating over x reviews -->
 		<h5>Rated 3/5 by 3 users</h5>
+		<!-- If an 'External URL' was provided on object creation it's placed here -->
+		<!-- target="_blank" forces this to open in a new tab -->
 		<h6><a href="https://www.hamilton.ca/hsr-bus-schedules-fares" target="_blank">External Information</a></h6>
-		<div class="row header-buffer">
-			<img src="static/hsr_uploaded.png" alt="HSR Bus Line" class="img-fluid rounded mx-auto d-block">
-		</div>
-		<div class="row header-buffer">
+		<!-- Image uploaded by the user to represent this transit system -->
+		<div class="row header-buffer align-items-center justify-content-center">
+			<!-- Picture tag to select whether to use a resized image or not -->
 			<div class="col-md-6">
-				<h5>Location</h5>
 				<picture>
-					<source media="(min-width: 576px)" srcset="static/hsr_2x.png" class="img-fluid">
-					<img src="static/hsr.png" alt="HSR Bus Line Maps" class="img-fluid">
+					<source media="(min-width: 768px)" srcset="static/hsr_uploaded_hr.png" class="img-fluid rounded mx-auto d-block">
+					<img src="static/hsr_uploaded.png" alt="HSR Bus Line" class="img-fluid rounded mx-auto d-block">
 				</picture>
 			</div>
+			<div clas="col-md-6">
+				<!-- Sample video was sourced from https://www.hamiltontransit.ca/new-buses-hit-the-road/ -->
+				<video width="250" height="175" controls>
+					<source src="static/hsr_uploaded_video.webm" type="video/webm">
+				</video>
+			</div>
+		</div>
+		<!-- Making use of bootstrap grid system here
+		Since I use .col-md-* classes these will all render stacked on smaller devices,
+		but will be in columns on larger devices - I think this looks best. -->
+		<div class="row header-buffer">
+			<!-- Contains the location of the system on a map.  -->
 			<div class="col-md-6">
+				<h5>Location</h5>
+				<!-- I'm not using html5 picture tags here because this is just going to be replaced
+					with a map later. -->
+				<img src="static/hsr.png" alt="HSR Bus Line Maps" class="img-fluid">
+			</div>
+			<div class="col-md-6">
+				<!-- Comment section -->
 				<h5>User Opinion</h5>
 
+				<!-- .opinion-pane gives us a nice-looking comment box. -->
 				<div class="row opinion-pane">
 					<div class="col-12">
+						<!-- Upper row will have username and rating. -->
 						<div class="row">
 							<div class="col-md-7">
 								@IDislikeHSR
@@ -125,11 +151,13 @@
 								Rates this line 0/5
 							</div>
 						</div>
+						<!-- Second row has their comments. -->
 						<div class="row">
 							<div class="col-10 offset-1">
 								<p>bad service, always late, drivers never smile, very disappointed :(</p>
 							</div>
 						</div>
+						<!-- Last row has buttons (like the comment, report abuse) -->
 						<div class="row">
 							<div class="col-4">
 								<a href="#">Report Abuse</a>

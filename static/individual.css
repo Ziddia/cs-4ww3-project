@@ -4,3 +4,9 @@
 	box-shadow: 2px 2px #888888;
 	margin-bottom: 1.5vh;
 }
+
+/* This makes the video more responsive to screen size changes */
+video {
+	max-width: 100%;
+	height: auto;
+}

@@ -76,13 +76,15 @@
 		</ul>
 	</nav>
 
-	 <!-- gonna use this for a login popup box -->
+	<!-- Login popup modal, using the same strategy as the mobile navbar above. -->
 	<span class="target-fix" id="login"></span>
 	<span class="target-fix" id="close-login"></span>
 	<div class="login-close">
 		<div class="login-overlay">
 			<div class="login-box">
 				<div class="padding-login-form">
+					<!-- the .button-closelogin class forces the 'x' icon to float right,
+					this makes it render in a way that's familiar to users -->
 					<h3>Log In<span class="button-closelogin"><a href="#close-login">&times;</a></span></h3>
 					<label for="username">Username:</label>
 					<input class="form-control" type="text" id="username">
@@ -103,6 +105,7 @@
 				<label for="obj_name" class="col-md-2 col-form-label">Name</label>
 				<input type="text" class="form-control col-md-10" id="obj_name">
 			</div>
+			<!-- Use a select to provide transit options, these could be pulled dynamically in future -->
 			<div class="form-group row">
 				<label for="obj_type" class="col-md-2 col-form-label">Type</label>
 				<select class="form-control col-md-10" id="obj_type">
@@ -117,6 +120,7 @@
 				<label for="obj_city" class="col-md-2 col-form-label">City</label>
 				<input type="text" class="form-control col-md-10" id="obj_city">
 			</div>
+			<!-- These could also be pulled dynamically -->
 			<div class="form-group row">
 				<label for="obj_province" class="col-md-2 col-form-label">Province</label>
 				<select class="form-control col-md-10" id="obj_province">
@@ -135,13 +139,20 @@
 					<option>YT</option>
 				</select>
 			</div>
+			<!-- URL of external information about the transit line -->
 			<div class="form-group row">
 				<label for="obj_url" class="col-md-2 col-form-label">External URL</label>
 				<input type="url" class="form-control col-md-10" id="obj_url">
 			</div>
+			<!-- Image upload -->
 			<div class="form-group row">
 				<label for="obj_img" class="col-md-2 col-form-label">Upload Image</label>
 				<input type="file" class="form-control-file col-md-10" id="obj_img" accept=".jpg, .png">
+			</div>
+			<!-- Video upload -->
+			<div class="form-group row">
+				<label for="obj_vid" class="col-md-2 col-form-label">Upload Video</label>
+				<input type="file" class="form-control-file col-md-10" id="obj_vid" accept=".mp4, .webm">
 			</div>
 			<button type="submit" class="btn btn-secondary">Submit</button>
 		</form>
