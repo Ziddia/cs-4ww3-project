@@ -73,6 +73,7 @@ footer {
 	margin: 0.2em;
 }
 
+/* Used this in a couple locations (e.g. forms) to put spacing between the title and the content */
 .header-buffer {
 	margin-top: 2em;
 	margin-bottom: 1em;
@@ -138,7 +139,7 @@ section {
 	animation-duration: 0.5s;
 }
 
-/* Keyframes for animation, I think they're actually unnecessary for this one but are for some of the other transitions */
+/* Keyframes for animation - just dynamically adjusts the max-height property */
 @keyframes slideDownNavbar {
 	0% {
 		max-height: 0vh;
@@ -172,6 +173,7 @@ section {
 	margin-left: 1em;
 }
 
+/* Desktop navbar (sidebar) does not get displayed on mobile page */
 .desktop-navbar {
 	display: none;
 }
@@ -264,6 +266,8 @@ li a:hover{
 	max-height: 0vh;
 }
 
+/* Just small adjustments to the login box for mobile devices.
+We want it to fill the screen instead of having a modal effect on small screens. */
 @media (max-width: 576px) {
 	.login-box {
 		width: 100%;
@@ -271,16 +275,20 @@ li a:hover{
 	}
 }
 
+/* Bit of padding for the actual login modal contents */
 .padding-login-form {
 	margin: 2em;
 }
 
+/* Force the login close button to align itself to the right */
 .button-closelogin {
 	float: right;
 }
 
+/* This is the grey overlay displayed while login modal is on screen. */
 .login-overlay {
 	position: fixed;
+	/* needed to avoid bootstrap rendering form elements over the overlay */
 	z-index: 1000;
 	top: 0;
 	left: 0;
@@ -292,6 +300,7 @@ li a:hover{
 	display:none;
 }
 
+/* Animations for login modal */
 #login:target ~ .login-close > .login-overlay {
 	max-height: 100vh;
 	overflow: hidden;
