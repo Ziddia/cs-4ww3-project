@@ -4,6 +4,10 @@ Authors:
 
 	We are 4ww3 students and we are doing Add-on task 2
 
+Links:
+	Live address: --------
+	Git Repo: ----------
+
 Add-on Task 2 writeup:
 	i) Two different sized images of the map image are provided. One for large desktops and a small resolution image for tablets and phones.
 
