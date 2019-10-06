@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Rating Site - Sample Results</title>
+	<title>Transit Rating - Sample Results</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="static/base.css">
 	<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
 		
 		<!-- Page title, links backwards to home page. -->
 		<div class="title">
-			<a href="index.html"><h1>Header Sample Results</h1></a>
+			<a href="index.html"><h1>Transit Rating</h1></a>
 		</div>
 	</header>
 
@@ -59,8 +59,8 @@
 				<li><a href="#login">Log In</a></li>
 				<li><a href="#">Log Out</a></li>
 				<li><a href="registration.html">Register</a></li>
-				<li><a href="search.html">Search Objects</a></li>
-				<li><a href="submission.html">Submit Object</a></li>
+				<li><a href="search.html">Search Transit Systems</a></li>
+				<li><a href="submission.html">Submit Transit System</a></li>
 				<!-- Link to close the menu via the :target stuff -->
 				<li><a href="#close-front">Close</a></li>
 			</ul>
@@ -72,18 +72,20 @@
 			<li><a href="#login">Log In</a></li>
 			<li><a href="#">Log Out</a></li>
 			<li><a href="registration.html">Register</a></li>
-			<li><a href="search.html">Search Objects</a></li>
-			<li><a href="submission.html">Submit Object</a></li>
+			<li><a href="search.html">Search Transit Systems</a></li>
+			<li><a href="submission.html">Submit Transit System</a></li>
 		</ul>
 	</nav>
 
-	 <!-- gonna use this for a login popup box -->
+	<!-- Login popup modal, using the same strategy as the mobile navbar above. -->
 	<span class="target-fix" id="login"></span>
 	<span class="target-fix" id="close-login"></span>
 	<div class="login-close">
 		<div class="login-overlay">
 			<div class="login-box">
 				<div class="padding-login-form">
+					<!-- the .button-closelogin class forces the 'x' icon to float right,
+					this makes it render in a way that's familiar to users -->
 					<h3>Log In<span class="button-closelogin"><a href="#close-login">&times;</a></span></h3>
 					<label for="username">Username:</label>
 					<input class="form-control" type="text" id="username">
@@ -150,7 +152,7 @@
 		</div>
 
 		<div class="px-3 pb-3">
-			<img class="map" src="static/map.png">
+			<img class="map" src="static/map.png" alt="Map of result locations">
 		</div>
 	</section>
 

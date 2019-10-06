@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Rating Site - Register for an Account</title>
+	<title>Transit Rating - Register for an Account</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="static/base.css">
 	<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
@@ -35,7 +35,7 @@
 		
 		<!-- Page title, links backwards to home page. -->
 		<div class="title">
-			<a href="index.html"><h1>Header Registration</h1></a>
+			<a href="index.html"><h1>Transit Rating</h1></a>
 		</div>
 	</header>
 
@@ -58,8 +58,8 @@
 				<li><a href="#login">Log In</a></li>
 				<li><a href="#">Log Out</a></li>
 				<li><a class="active" href="registration.html">Register</a></li>
-				<li><a href="search.html">Search Objects</a></li>
-				<li><a href="submission.html">Submit Object</a></li>
+				<li><a href="search.html">Search Transit Systems</a></li>
+				<li><a href="submission.html">Submit Transit System</a></li>
 				<!-- Link to close the menu via the :target stuff -->
 				<li><a href="#close-front">Close</a></li>
 			</ul>
@@ -71,18 +71,20 @@
 			<li><a href="#login">Log In</a></li>
 			<li><a href="#">Log Out</a></li>
 			<li><a class="active" href="registration.html">Register</a></li>
-			<li><a href="search.html">Search Objects</a></li>
-			<li><a href="submission.html">Submit Object</a></li>
+			<li><a href="search.html">Search Transit Systems</a></li>
+			<li><a href="submission.html">Submit Transit System</a></li>
 		</ul>
 	</nav>
 
-	 <!-- gonna use this for a login popup box -->
+	 <!-- Login popup modal, using the same strategy as the mobile navbar above. -->
 	<span class="target-fix" id="login"></span>
 	<span class="target-fix" id="close-login"></span>
 	<div class="login-close">
 		<div class="login-overlay">
 			<div class="login-box">
 				<div class="padding-login-form">
+					<!-- the .button-closelogin class forces the 'x' icon to float right,
+					this makes it render in a way that's familiar to users -->
 					<h3>Log In<span class="button-closelogin"><a href="#close-login">&times;</a></span></h3>
 					<label for="username">Username:</label>
 					<input class="form-control" type="text" id="username">
@@ -98,23 +100,29 @@
 	<!-- Main page content -->
 	<section>
 		<h3>Register an Account</h3>
-		<form action="#" method="POST" class="form-buffer">
-			<div class="form-group">
-				<label for="user_email">E-mail Address</label>
-				<input type="email" class="form-control" id="user_email">
+		<!-- This form goes nowhere, but will eventually POST to some form submission (PHP I guess) -->
+		<form action="#" method="POST" class="header-buffer">
+			<div class="form-group row">
+				<label for="user_email" class="col-md-2 col-form-label">E-mail Address</label>
+				<input type="email" class="form-control col-md-10" id="user_email">
 			</div>
-			<div class="form-group">
-				<label for="username">Username</label>
-				<input type="text" class="form-control" id="username">
+			<div class="form-group row">
+				<label for="reg_username" class="col-md-2 col-form-label">Username</label>
+				<input type="text" class="form-control col-md-10" id="reg_username">
 			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<input type="password" class="form-control" id="password">
+			<div class="form-group row">
+				<label for="reg_password" class="col-md-2 col-form-label">Password</label>
+				<input type="password" class="form-control col-md-10" id="reg_password">
 			</div>
-			<div class="form-group">
-				<label for="confirm">Confirm Password</label>
-				<input type="password" class="form-control" id="confirm">
+			<div class="form-group row">
+				<label for="confirm" class="col-md-2 col-form-label">Confirm Password</label>
+				<input type="password" class="form-control col-md-10" id="confirm">
 			</div>
+			<div class="form-check row">
+				<input type="checkbox" class="form-check-input" id="subscribe">
+				<label class="form-check-label" for="subscribe">Subscribe to update e-mails</label>
+			</div>
+			<br/>
 			<button type="submit" class="btn btn-secondary">Register</button>
 		</form>
 	</section>
