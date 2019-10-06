@@ -66,3 +66,11 @@ content {
 	align-items: center;
 	background-color: lightblue;
 }
+
+section div picture img {
+	width: 100%;
+}
+
+section div {
+	max-width: 100%;
+}
