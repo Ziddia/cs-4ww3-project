@@ -146,7 +146,11 @@
 		</div>
 
 		<div class="px-3 pb-3">
-			<img class="map" src="static/map.png" alt="Map of result locations">
+			<picture class="map">
+				<source src="static/map.png" media="(min-width: 0px)">
+				<img src="static/map.png" alt="Map of result locations">
+			</picture>
+			
 		</div>
 	</section>
 
