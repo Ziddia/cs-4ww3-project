@@ -30,6 +30,7 @@ footer {
 	display: flex !important;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 }
 
 /* These are used to selectively display content on mobile/non-mobile devices
