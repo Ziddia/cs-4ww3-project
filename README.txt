@@ -1,12 +1,12 @@
 Authors:
 	Daniel Brunton 400024814
-	Joshua Smith ###
+	Joshua Smith 400013323
 
 	We are 4ww3 students and we are doing Add-on task 2
 
 Links:
-	Live address: --------
-	Git Repo: ----------
+	Live address: https://transitrating.tk
+	Git Repo: https://github.com/Ziddia/cs-4ww3-project
 
 Add-on Task 2 writeup:
 	i) Two different sized images of the map image are provided. One for large desktops and a small resolution image for tablets and phones.
