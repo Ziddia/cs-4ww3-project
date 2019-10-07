@@ -1,5 +1,5 @@
 /* this is for responsive design but might not be needed w Bootstrap css */
-@-ms-viewport{
+@viewport{
   width: device-width;
 }
 
