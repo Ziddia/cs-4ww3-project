@@ -8,6 +8,9 @@ Links:
 	Live address: https://transitrating.tk
 	Git Repo: https://github.com/Ziddia/cs-4ww3-project
 
+Notes on validation:
+	There are some validation issues with the Bootstrap CSS framework. The benefits provided by Bootstrap (the grid system, the responsive design, and the consistent UI) outweigh whatever problems there may be with its validation. Most of the validation errors seem to be due to platform-specific components that aren't parsing properly.
+
 Add-on Task 2 writeup:
 	i) Two different sized images of the map image are provided. One for large desktops and a small resolution image for tablets and phones.
 

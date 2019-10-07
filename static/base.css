@@ -1,8 +1,3 @@
-/* this is for responsive design but might not be needed w Bootstrap css */
-@viewport{
-  width: device-width;
-}
-
 /* Using flex layouts so apply to whole body */
 body {
 	display: flex;
