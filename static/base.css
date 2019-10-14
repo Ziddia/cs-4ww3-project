@@ -69,6 +69,14 @@ footer {
 	margin: 0.2em;
 }
 
+.map {
+	height: 90%;
+}
+
+.full-height {
+	height: 100%;
+}
+
 /* Used this in a couple locations (e.g. forms) to put spacing between the title and the content */
 .header-buffer {
 	margin-top: 2em;
