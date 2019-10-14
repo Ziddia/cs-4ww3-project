@@ -1,4 +1,5 @@
 function validate() {
+	// grab contents of the form by their IDs, with jquery
 	var email = $("#user_email").val();
 	var username = $("#reg_username").val();
 	var password = $("#reg_password").val();
@@ -7,7 +8,9 @@ function validate() {
 
 	// confirm all fields are filled out
 	if (email == "" || username == "" || password == "" || confirm == "") {
+		// insert some text to indicate to the user that the form validation failed
 		$("#form_error").html("<p>Please ensure you fill out all fields.</p>");
+		// return false to prevent the form from submitting
 		return false;
 	}
 
@@ -32,5 +35,6 @@ function validate() {
 		return false;
 	}
 	
+	// if all checks passed we return true and this allows the form to submit
 	return true;
 }
