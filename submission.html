@@ -103,11 +103,11 @@
 		<form action="#" method="POST" class="header-buffer">
 			<div class="form-group row">
 				<label for="obj_name" class="col-md-2 col-form-label">Name</label>
-				<input type="text" class="form-control col-md-10" id="obj_name">
+				<input type="text" class="form-control col-md-10" id="obj_name" required>
 			</div>
 			<div class="form-group row">
 				<label for="obj_desc" class="col-md-2 col-form-label">Description</label>
-				<input type="text" class="form-control col-md-10" id="obj_desc">
+				<input type="text" class="form-control col-md-10" id="obj_desc" required>
 			</div>
 			<!-- Use a select to provide transit options, these could be pulled dynamically in future.
 			Actually what I want is to have some sort of autocomplete location search from google maps API. -->
@@ -123,7 +123,7 @@
 			</div>
 			<div class="form-group row">
 				<label for="obj_city" class="col-md-2 col-form-label">City</label>
-				<input type="text" class="form-control col-md-10" id="obj_city">
+				<input type="text" class="form-control col-md-10" id="obj_city" required>
 			</div>
 			<!-- These could also be pulled dynamically -->
 			<div class="form-group row">
@@ -146,7 +146,7 @@
 			</div>
 			<!-- URL of external information about the transit line -->
 			<div class="form-group row">
-				<label for="obj_url" class="col-md-2 col-form-label">External URL</label>
+				<label for="obj_url" class="col-md-2 col-form-label" pattern="https?://.+">External URL</label>
 				<input type="url" class="form-control col-md-10" id="obj_url">
 			</div>
 			<!-- Image upload -->
