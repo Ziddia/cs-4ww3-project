@@ -57,6 +57,14 @@ footer {
 	margin-top: 0.2em;
 }
 
+.modal-content {
+	height: 80vh;
+}
+
+.modal-body {
+	height: 100%;
+}
+
 /* Adjusted the spacing for buttons in mobile slightly */
 .headerButtons {
 	display: flex;

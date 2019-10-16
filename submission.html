@@ -124,7 +124,7 @@
 			<div class="form-group row">
 				<label for="obj_city" class="col-md-2 col-form-label">City</label>
 				<input type="text" class="form-control col-md-7" id="obj_city">
-				<button type="button" data-toggle="modal" data-target="#modal_location" class="btn btn-secondary col-md-2 offset-md-1">Find Near Me</button>
+				<button type="button" data-toggle="modal" data-target="#modal_location" class="btn btn-secondary col-md-2 offset-md-1" onclick="navigator.geolocation.getCurrentPosition(LoadLocation);">Find Near Me</button>
 			</div>
 			<!-- These could also be pulled dynamically -->
 			<div class="form-group row">
@@ -174,7 +174,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>Modal body text goes here.</p>
+					<div id="map" class="map"></div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary">Save changes</button>
@@ -189,6 +189,8 @@
 		<h6>Helping You Get Places</h6>
 	</footer>
 
+	<script src="static/submission.js"></script>
+
 	<!-- jQuery/Bootstrap scripts -->
 	<script
 	  src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -198,7 +200,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 	<!-- Google Maps API -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0YtpSWfJsdHE5dxZtwUx2TBhOlnM0r0&callback=initMap"
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0YtpSWfJsdHE5dxZtwUx2TBhOlnM0r0&libraries=places&callback=placesInit"
     async defer></script>
 </body>
 
