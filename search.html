@@ -100,7 +100,7 @@
 	<!-- Main page content -->
 	<section>
 		<h3>Search Transit Systems</h3>
-		<form action="#" method="GET" class="form-buffer">
+		<form action="#" method="GET" class="header-buffer" onsubmit="return validate();">
 			<div class="form-group">
 				<label>Keyword Search</label>
 				<input type="text" class="form-control" id="search">
@@ -116,6 +116,11 @@
 					<option>5</option>
 				</select>
 			</div>
+			<div class="form-group">
+				<button type="button" class="btn btn-secondary col-md-2" onclick="getLocation()">Search Near Me</button>
+				<div id="location_results"></div>
+			</div>
+			<div id="form_error"></div>
 			<button type="submit" class="btn btn-secondary">Search</button>
 			
 			<!-- temporary a tag to redirect to a sample search results page -->
@@ -124,10 +129,32 @@
 		</form>
 	</section>
 
+	<div class="modal" id="modal_location" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Location Selection</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="map" id="map"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">Save Changes</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<footer>
 		<h5>Transit Rating</h5>
 		<h6>Helping You Get Places</h6>
 	</footer>
+
+	<script src="static/search.js"></script>
 
 	<!-- jQuery/Bootstrap scripts -->
 	<script
@@ -138,7 +165,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 	<!-- Google Maps API -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0YtpSWfJsdHE5dxZtwUx2TBhOlnM0r0&callback=initMap"
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0YtpSWfJsdHE5dxZtwUx2TBhOlnM0r0&libraries=places&callback=placesInit"
     async defer></script>
 </body>
 
