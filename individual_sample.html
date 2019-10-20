@@ -129,11 +129,9 @@
 		but will be in columns on larger devices - I think this looks best. -->
 		<div class="row header-buffer">
 			<!-- Contains the location of the system on a map.  -->
-			<div class="col-md-6">
+			<div class="col-md-6 full-height">
 				<h5>Location</h5>
-				<!-- I'm not using html5 picture tags here because this is just going to be replaced
-					with a map later. -->
-				<img src="static/hsr.png" alt="HSR Bus Line Maps" class="img-fluid">
+				<div id="map" class="map"></div>
 			</div>
 			<div class="col-md-6">
 				<!-- Comment section -->
@@ -229,7 +227,19 @@
 		<h6>Helping You Get Places</h6>
 	</footer>
 
-	<!-- <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script> -->
+	<script src="static/individual.js"></script>
+
+	<!-- jQuery/Bootstrap scripts -->
+	<script
+	  src="https://code.jquery.com/jquery-3.4.1.min.js"
+	  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<!-- Google Maps API -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0YtpSWfJsdHE5dxZtwUx2TBhOlnM0r0&callback=initMap&libraries=places"
+    async defer></script>
 </body>
 
 </html>
