@@ -1,7 +1,10 @@
 // variable to store the map object coming from google maps API
 var map;
+// reference to places service
 var service;
+// popup window
 var infowindow;
+// used to convert lat/long coords into an actual address, or vice versa
 var geocoder;
 
 // utility function to place a marker on the map.
@@ -21,10 +24,15 @@ function createMarker(place, id) {
 	});
 }
 
+// this function is called when a marker is selected in the popup modal.
+// it decodes the lat/long of the selected location and uses geocoder to fetch address info.
+// then it autofills the relevant fields in the form with this info.
 function SetLocation(id) {
+	// selected location
 	var user_location = window.search_results[id];
 	$("#obj_lat").val(user_location.geometry.location.lat);
 	$("#obj_long").val(user_location.geometry.location.lng);
+	// find address from lat/long
     geocoder.geocode({'latLng': user_location.geometry.location}, function(results, status) {
     	for (var c in results[0].address_components) {
     		var comp = results[0].address_components[c];
@@ -38,12 +46,17 @@ function SetLocation(id) {
     			$("#obj_province").val(comp.short_name);
     		}
     	}
+    	$("#modal_location").modal('hide');
     });
 }
 
+// this loads the user's location and determines the transit stations
+// which are nearby to them.
 function LoadLocation(position) {
+	// user location
 	var latitude = position.coords.latitude;
 	var longitude = position.coords.longitude;
+	// get gmaps object for location
 	var location = new google.maps.LatLng(latitude, longitude);
 	map.setCenter(location);
 
@@ -53,8 +66,10 @@ function LoadLocation(position) {
 		type: 'transit_station'
 	};
 
+	// search for nearby transit station objects
 	service.nearbySearch(request, function(results, status) {
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
+			// store results to be used in other functions
 			window.search_results = results;
 	        for (var i = 0; i < results.length; i++) {
 	          createMarker(results[i], i);
