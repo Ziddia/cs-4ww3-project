@@ -31,12 +31,12 @@ function initMap() {
 
   // creates a map, since transit lines are quite large zoom of 8 (roughly city level) seems appropriate
 	map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8
+          zoom: 15
         });
 
   // the place we are searching for, this part will need to be dynamic eventually.
 	var request = {
-      query: 'HSR Hamilton',
+      query: 'EMERSON at ROYAL',
       fields: ['name', 'geometry'],
     };
 

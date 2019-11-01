@@ -58,8 +58,8 @@
 				<li><a href="#login">Log In</a></li>
 				<li><a href="#">Log Out</a></li>
 				<li><a href="registration.html">Register</a></li>
-				<li><a href="search.html">Search Transit Systems</a></li>
-				<li><a class="active" href="submission.html">Submit Transit System</a></li>
+				<li><a href="search.html">Search Transit Stations</a></li>
+				<li><a class="active" href="submission.html">Submit Transit Station</a></li>
 				<!-- Link to close the menu via the :target stuff -->
 				<li><a href="#close-front">Close</a></li>
 			</ul>
@@ -71,8 +71,8 @@
 			<li><a href="#login">Log In</a></li>
 			<li><a href="#">Log Out</a></li>
 			<li><a href="registration.html">Register</a></li>
-			<li><a href="search.html">Search Transit Systems</a></li>
-			<li><a class="active" href="submission.html">Submit Transit System</a></li>
+			<li><a href="search.html">Search Transit Stations</a></li>
+			<li><a class="active" href="submission.html">Submit Transit Station</a></li>
 		</ul>
 	</nav>
 
@@ -120,6 +120,14 @@
 					<option>Subway</option>
 					<option>Ferry</option>
 				</select>
+			</div>
+			<div class="form-group row">
+				<label for="obj_lat" class="col-md-2 col-form-label">Latitude</label>
+				<input type="number" step="any" class="form-control col-md-7" id="obj_lat" required>
+			</div>
+			<div class="form-group row">
+				<label for="obj_long" class="col-md-2 col-form-label">Longitude</label>
+				<input type="number" step="any" class="form-control col-md-7" id="obj_long" required>
 			</div>
 			<div class="form-group row">
 				<label for="obj_city" class="col-md-2 col-form-label">City</label>
@@ -177,7 +185,6 @@
 					<div id="map" class="map"></div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Save Changes</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>

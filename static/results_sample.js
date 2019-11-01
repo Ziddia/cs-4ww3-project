@@ -16,7 +16,7 @@ function createMarker(place) {
 	// adds an event listener which will show a popup window when the marker is clicked
 	google.maps.event.addListener(marker, 'click', function() {
 		// fill the popup dialog with information about the entry
-		infowindow.setContent("<h6>" + place.name + "</h6><p>A Description of the transit line</p><p><a href=\"individual_sample.html\">individual sample</a></p>");
+		infowindow.setContent("<h6>" + place.name + "</h6><p>A Description of the transit station</p><p><a href=\"individual_sample.html\">individual sample</a></p>");
 		infowindow.open(map, this);
 	});
 }
@@ -30,15 +30,13 @@ function initMap() {
 	// initializes the info popup
 	infowindow = new google.maps.InfoWindow();
 
-	// NOT FINDING MAP DIV FOR SOME REASON!!!!
-
 	// creates a map, since transit lines are quite large zoom of 8 (roughly city level) seems appropriate
 	map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 8
 		});
 
 	// hardcoded queries to use for the map markers
-	var queries = ['HSR Hamilton', 'TTC Subway', 'TTC StreetCars']
+	var queries = ['Union Subway', 'Queen St West At Ossington Ave', 'EMERSON at ROYAL']
 	queries.forEach(function(searchQuery) {
 		// the place we are searching for, this part will need to be dynamic eventually.
 		var request = {

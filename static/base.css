@@ -79,10 +79,14 @@ footer {
 
 .map {
 	height: 90%;
+	width: 100%;
 }
 
 .full-height {
-	height: 100%;
+	height: 60vh;
+	display:flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 /* Used this in a couple locations (e.g. forms) to put spacing between the title and the content */
