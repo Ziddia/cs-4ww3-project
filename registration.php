@@ -23,25 +23,25 @@
 	<section>
 		<h3>Register an Account</h3>
 		<!-- This form goes nowhere, but will eventually POST to some form submission (PHP I guess) -->
-		<form action="#" method="POST" class="header-buffer" onsubmit="return validate();">
+		<form action="registration_post.php" method="post" class="header-buffer" onsubmit="return validate();">
 			<div class="form-group row">
 				<label for="user_email" class="col-md-2 col-form-label">E-mail Address</label>
-				<input type="email" class="form-control col-md-10" id="user_email">
+				<input type="email" class="form-control col-md-10" name="user_email" id="user_email">
 			</div>
 			<div class="form-group row">
 				<label for="reg_username" class="col-md-2 col-form-label">Username</label>
-				<input type="text" class="form-control col-md-10" id="reg_username">
+				<input type="text" class="form-control col-md-10" name="reg_username" id="reg_username">
 			</div>
 			<div class="form-group row">
 				<label for="reg_password" class="col-md-2 col-form-label">Password</label>
-				<input type="password" class="form-control col-md-10" id="reg_password">
+				<input type="password" class="form-control col-md-10" name="reg_password" id="reg_password">
 			</div>
 			<div class="form-group row">
 				<label for="confirm" class="col-md-2 col-form-label">Confirm Password</label>
-				<input type="password" class="form-control col-md-10" id="confirm">
+				<input type="password" class="form-control col-md-10" name="confirm" id="confirm">
 			</div>
 			<div class="form-check row">
-				<input type="checkbox" class="form-check-input" id="subscribe">
+				<input type="checkbox" class="form-check-input" name="subscribe" id="subscribe">
 				<label class="form-check-label" for="subscribe">Subscribe to update e-mails</label>
 			</div>
 			<br/>
