@@ -1,3 +1,5 @@
+<?php if(!isset($_SESSION)) session_start(); ?>
+
 <!-- 'hack' I got the concept for from https://web.archive.org/web/20120929010042/http://csscience.com/css3-tabs/#tabC
 
 	this is used to stop the page from 'jumping' during the :target transitions
@@ -14,11 +16,13 @@
 <div class="navbar-close">
 	<nav class="mobile-navbar">
 		<ul>
-			<li><a id="nav_login" href="#login">Log In</a></li>
-			<li><a href="#">Log Out</a></li>
-			<li><a id="nav_reg" href="registration.php">Register</a></li>
+			<?php if (!isset($_SESSION["username"])) : ?>
+				<li><a id="nav_login" href="#login">Log In</a></li>
+				<li><a id="nav_reg" href="registration.php">Register</a></li>
+			<?php endif; ?>
 			<li><a id="nav_search" href="search.php">Search Transit Stations</a></li>
 			<li><a id="nav_submit" href="submission.php">Submit Transit Station</a></li>
+			<?php if (isset($_SESSION["username"])) : ?><li><a href="logout.php">Log Out</a></li><?php endif; ?>
 			<!-- Link to close the menu via the :target stuff -->
 			<li><a href="#close-front">Close</a></li>
 		</ul>
@@ -27,11 +31,13 @@
 
 <nav class="desktop-navbar">
 	<ul>
-		<li><a id="nav_login_d" href="#login">Log In</a></li>
-		<li><a href="#">Log Out</a></li>
-		<li><a id="nav_reg_d" href="registration.php">Register</a></li>
+		<?php if (!isset($_SESSION["username"])) : ?>
+			<li><a id="nav_login" href="#login">Log In</a></li>
+			<li><a id="nav_reg" href="registration.php">Register</a></li>
+		<?php endif; ?>
 		<li><a id="nav_search_d" href="search.php">Search Transit Stations</a></li>
 		<li><a id="nav_submit_d" href="submission.php">Submit Transit Station</a></li>
+		<?php if (isset($_SESSION["username"])) : ?><li><a href="logout.php">Log Out</a></li><?php endif; ?>
 	</ul>
 </nav>
 

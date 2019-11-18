@@ -8,12 +8,14 @@
 				<!-- the .button-closelogin class forces the 'x' icon to float right,
 				this makes it render in a way that's familiar to users -->
 				<h3>Log In<span class="button-closelogin"><a href="#close-login">&times;</a></span></h3>
-				<label for="username">Username:</label>
-				<input class="form-control" type="text" id="username">
-				<label for="password">Password:</label>
-				<input class="form-control" type="password" id="password">
-				<br/>
-				<button type="submit" class="btn btn-secondary">Go</button>
+				<form action="login_post.php" method="post">
+					<label for="username">Username:</label>
+					<input class="form-control" type="text" name="username" id="username">
+					<label for="password">Password:</label>
+					<input class="form-control" type="password" name="password" id="password">
+					<br/>
+					<button type="submit" class="btn btn-secondary">Go</button>
+				</form>
 			</div>
 		</div>
 	</div>
