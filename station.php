@@ -49,12 +49,13 @@ if (isset($_GET['sid'])) {
 			// query to fetch all author names
 			// the str_pad solution for variable length strings is from
 			// https://stackoverflow.com/questions/1586587/pdo-binding-values-for-mysql-in-statement
-			$query = $pdo->prepare("SELECT * FROM users WHERE id IN (".str_pad('',count(array_unique($user_ids))*2-1,'?,').")");
-			$query->execute(array_unique($user_ids));
-			
-			// now we store the user's username in $users
-			foreach ($query->fetchAll() as $user) {
-				$users[$user['id']] = $user['username'];
+			if (count(array_unique($user_ids)) > 0) {
+				$query = $pdo->prepare("SELECT * FROM users WHERE id IN (".str_pad('',count(array_unique($user_ids))*2-1,'?,').")");
+				$query->execute(array_unique($user_ids));
+				// now we store the user's username in $users
+				foreach ($query->fetchAll() as $user) {
+					$users[$user['id']] = $user['username'];
+				}
 			}
 		}
 	} catch (\PDOException $e) {

@@ -83,29 +83,40 @@ if (count($errs) === 0) {
 			// Create an Amazon S3 client using the shared configuration data.
 			$s3Client = $sdk->createS3();
 
-			// create a unique key to store the object into s3 with
-			$ext = pathinfo($_FILES["obj_img"]["name"], PATHINFO_EXTENSION);
-			$key = uniqid($_SESSION["username"], true) . "." . $ext;
+			$key = '';
+			$key_vid = '';
 
-			// Send a PutObject request and get the result object.
-			$result = $s3Client->putObject([
-			    'Bucket' => 'transitrating.tk-uploads',
-			    'Key' => $key,
-			    'Body' => file_get_contents($_FILES['obj_img']['tmp_name']),
-			    'ACL'    => 'public-read'
-			]);
+			// if image uploaded, store the image
+			if (isset($_FILES["obj_img"]) && !empty($_FILES["obj_img"]) && $_FILES["obj_img"]["error"] !== 4) {
 
-			// do it again for the video
-			$ext_vid = pathinfo($_FILES["obj_vid"]["name"], PATHINFO_EXTENSION);
-			$key_vid = uniqid($_SESSION["username"], true) . "." . $ext_vid;
+				// create a unique key to store the object into s3 with
+				$ext = pathinfo($_FILES["obj_img"]["name"], PATHINFO_EXTENSION);
+				$key = uniqid($_SESSION["username"], true) . "." . $ext;
 
-			// Send a PutObject request and get the result object.
-			$result = $s3Client->putObject([
-			    'Bucket' => 'transitrating.tk-uploads',
-			    'Key' => $key_vid,
-			    'Body' => file_get_contents($_FILES['obj_vid']['tmp_name']),
-			    'ACL'    => 'public-read'
-			]);
+				// Send a PutObject request and get the result object.
+				$result = $s3Client->putObject([
+				    'Bucket' => 'transitrating.tk-uploads',
+				    'Key' => $key,
+				    'Body' => file_get_contents($_FILES['obj_img']['tmp_name']),
+				    'ACL'    => 'public-read'
+				]);
+			}
+
+			// if video uploaded, store the image
+			if (isset($_POST["obj_vid"]) && !empty($_POST["obj_vid"]) && $_FILES["obj_vid"]["error"] !== 4) {
+
+				// do it again for the video
+				$ext_vid = pathinfo($_FILES["obj_vid"]["name"], PATHINFO_EXTENSION);
+				$key_vid = uniqid($_SESSION["username"], true) . "." . $ext_vid;
+
+				// Send a PutObject request and get the result object.
+				$result = $s3Client->putObject([
+				    'Bucket' => 'transitrating.tk-uploads',
+				    'Key' => $key_vid,
+				    'Body' => file_get_contents($_FILES['obj_vid']['tmp_name']),
+				    'ACL'    => 'public-read'
+				]);
+			}
 
 			// collect variables to use in the query
 			$name = $_POST["obj_name"];
@@ -127,6 +138,7 @@ if (count($errs) === 0) {
 
 			// insert into the database
 			$pdo->prepare("INSERT INTO stations (`name`, `desc`, `type`, latitude, longitude, city, province, url, image, video, uploader) VALUES (?,?,?,?,?,?,?,?,?,?,?)")->execute([$name,$desc,$type,$lat,$long,$city,$province,$url,$key,$key_vid,$user_id->id]);
+			$sid = $pdo->lastInsertId();
 		}
 	} catch (\PDOException $e) {
 		$errs[] = "An error occurred while communicating with the database.";
@@ -169,7 +181,7 @@ if (count($errs) === 0) {
 				}
 				echo "<p>Click <a href=\"submission.php\">here</a> to retry submission.</p>";
 			} else {
-				echo "<p>Submission completed successfully.</p>";
+				echo "<p>Submission completed successfully. Click <a href=\"station.php?sid=".$sid."\">here</a> to view your submission.</p>";
 			}
 		?>
 	</section>
