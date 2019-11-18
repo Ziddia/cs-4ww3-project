@@ -21,3 +21,13 @@ CREATE TABLE stations (
   uploader INT,
   FOREIGN KEY (uploader) REFERENCES users(id)
 );
+
+CREATE TABLE comments (
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  author INT,
+  station INT,
+  rating INT NOT NULL,
+  text VARCHAR(500),
+  FOREIGN KEY (author) REFERENCES users(id),
+  FOREIGN KEY (station) REFERENCES stations(id)
+);
