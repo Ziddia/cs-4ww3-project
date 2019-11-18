@@ -1,5 +1,5 @@
 <?php
-require 'static/php/aws.phar';
+require 'includes/aws.phar';
 
 use Aws\S3\S3Client;
 
