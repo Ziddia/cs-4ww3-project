@@ -13,91 +13,13 @@
 </head>
 
 <body>
-	<header>
-		<!-- This is broken down into mobile/non-mobile, depending on screen width. -->
-		<div class="headerButtons">
-			<div class="mobile">
-				<!-- Responsible for displaying the hamburger icon.
-					The 'a' tag is for performing menu animations via CSS :target attributes.
-				 -->
-				<div class="mobile-nav icon"><a href="#front"><i class="fa fa-bars fa-2x"></i></a></div>
-				<div class="mobile-buttons">
-					<a class="btn btn-secondary" href="#login">Login</a>
-					<a class="btn btn-secondary" href="registration.html">Sign Up</a>
-				</div>
-			</div>
-			<div class="not-mobile">
-				<!-- Show buttons related to account login, register, logout -->
-				<div class="desktop-buttons">
-					<a class="btn btn-secondary" href="#login">Login</a>
-					<a class="btn btn-secondary" href="registration.html">Sign Up</a>
-				</div>
-			</div>
-		</div>
-		
-		<!-- Page title, links backwards to home page. -->
-		<div class="title">
-			<a href="index.html"><h1>Transit Rating</h1></a>
-		</div>
-	</header>
+	<?php include("includes/header.php"); ?>
+	<?php 
+		$page_id = 'search';
+		include("includes/navbar.php"); 
+	?>
 
-	<!-- 'hack' I got the concept for from https://web.archive.org/web/20120929010042/http://csscience.com/css3-tabs/#tabC
-
-		this is used to stop the page from 'jumping' during the :target transitions
-		(without this it would move to put the #target at the top of the page)
-
-		basically the idea is to insert these 2 spans which are fixed at top-left corner,
-		and direct the a tag from the hamburger icon to these spans (such that browser
-		doesn't need to jump to the #target, it's always at top-left corner). then we use
-		fancy CSS selectors to apply the animations to the actual target elements
-		(for example, #front:target ~ .navbar-close > nav for expanding the navbar).
-	 -->
-	<span class="target-fix" id="close-front"></span>
-	<span class="target-fix" id="front"></span>
-	<div class="navbar-close">
-		<nav class="mobile-navbar">
-			<ul>
-				<li><a href="#login">Log In</a></li>
-				<li><a href="#">Log Out</a></li>
-				<li><a href="registration.html">Register</a></li>
-				<li><a href="search.html">Search Transit Stations</a></li>
-				<li><a href="submission.html">Submit Transit Stations</a></li>
-				<!-- Link to close the menu via the :target stuff -->
-				<li><a href="#close-front">Close</a></li>
-			</ul>
-		</nav>
-	</div>
-
-	<nav class="desktop-navbar">
-		<ul>
-			<li><a href="#login">Log In</a></li>
-			<li><a href="#">Log Out</a></li>
-			<li><a href="registration.html">Register</a></li>
-			<li><a href="search.html">Search Transit Stations</a></li>
-			<li><a href="submission.html">Submit Transit Station</a></li>
-		</ul>
-	</nav>
-
-	 <!-- Login popup modal, using the same strategy as the mobile navbar above. -->
-	<span class="target-fix" id="login"></span>
-	<span class="target-fix" id="close-login"></span>
-	<div class="login-close">
-		<div class="login-overlay">
-			<div class="login-box">
-				<div class="padding-login-form">
-					<!-- the .button-closelogin class forces the 'x' icon to float right,
-					this makes it render in a way that's familiar to users -->
-					<h3>Log In<span class="button-closelogin"><a href="#close-login">&times;</a></span></h3>
-					<label for="username">Username:</label>
-					<input class="form-control" type="text" id="username">
-					<label for="password">Password:</label>
-					<input class="form-control" type="password" id="password">
-					<br/>
-					<button type="submit" class="btn btn-secondary">Go</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include("includes/login-modal.php"); ?>
 
 	<!-- Main page content -->
 	<section>
