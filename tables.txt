@@ -5,3 +5,19 @@ CREATE TABLE Users (
   email VARCHAR(50) NOT NULL,
   subscribe BOOLEAN
 );
+
+CREATE TABLE stations (
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  `name` VARCHAR(60) NOT NULL,
+  `desc` VARCHAR(100),
+  `type` VARCHAR(20) NOT NULL,
+  latitude DECIMAL(7,4) NOT NULL,
+  longitude DECIMAL(7,4) NOT NULL,
+  city VARCHAR(30),
+  province VARCHAR(10),
+  url VARCHAR(100),
+  image VARCHAR(100),
+  video VARCHAR(100),
+  uploader INT,
+  FOREIGN KEY (uploader) REFERENCES users(id)
+);
