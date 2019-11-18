@@ -84,23 +84,27 @@ if (count($errs) === 0) {
 			$s3Client = $sdk->createS3();
 
 			// create a unique key to store the object into s3 with
-			$key = uniqid($_SESSION["username"], true);
+			$ext = pathinfo($_FILES["obj_img"]["name"], PATHINFO_EXTENSION);
+			$key = uniqid($_SESSION["username"], true) . "." . $ext;
 
 			// Send a PutObject request and get the result object.
 			$result = $s3Client->putObject([
 			    'Bucket' => 'transitrating.tk-uploads',
 			    'Key' => $key,
-			    'Body' => file_get_contents($_FILES['obj_img']['tmp_name'])
+			    'Body' => file_get_contents($_FILES['obj_img']['tmp_name']),
+			    'ACL'    => 'public-read'
 			]);
 
 			// do it again for the video
-			$key_vid = uniqid($_SESSION["username"], true);
+			$ext_vid = pathinfo($_FILES["obj_vid"]["name"], PATHINFO_EXTENSION);
+			$key_vid = uniqid($_SESSION["username"], true) . "." . $ext_vid;
 
 			// Send a PutObject request and get the result object.
 			$result = $s3Client->putObject([
 			    'Bucket' => 'transitrating.tk-uploads',
 			    'Key' => $key_vid,
-			    'Body' => file_get_contents($_FILES['obj_vid']['tmp_name'])
+			    'Body' => file_get_contents($_FILES['obj_vid']['tmp_name']),
+			    'ACL'    => 'public-read'
 			]);
 
 			// collect variables to use in the query
