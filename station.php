@@ -162,8 +162,8 @@ if (isset($_GET['sid'])) {
 						</div>
 					<?php endif; ?>
 
-					<?php foreach($comments as $comment) : ?>
-						<div id="all_comments">
+					<div id="all_comments">
+						<?php foreach($comments as $comment) : ?>
 							<!-- .opinion-pane gives us a nice-looking comment box. -->
 							<div class="row opinion-pane">
 								<div class="col-12">
@@ -193,8 +193,8 @@ if (isset($_GET['sid'])) {
 									</div>
 								</div>
 							</div>
-						</div>
-					<?php endforeach; ?>
+						<?php endforeach; ?>
+					</div>
 				</div>
 				<!-- Contains the location of the system on a map.  -->
 				<div class="col-md-6 full-height">
