@@ -30,7 +30,7 @@
 			</div>
 			<div class="form-group row">
 				<label for="obj_desc" class="col-md-2 col-form-label">Description</label>
-				<input type="text" class="form-control col-md-10" name="obj_desc" id="obj_desc" required>
+				<input type="text" class="form-control col-md-10" name="obj_desc" id="obj_desc">
 			</div>
 			<!-- Use a select to provide transit options, these could be pulled dynamically in future.
 			Actually what I want is to have some sort of autocomplete location search from google maps API. -->

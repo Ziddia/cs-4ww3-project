@@ -26,7 +26,7 @@ if (isset($_GET['sid'])) {
 			$errs[] = "The station ID provided is invalid, you may have followed a bad link.";
 		} else {
 			// fetch the comments for this station
-			$query = $pdo->prepare("SELECT * FROM comments WHERE station = ?");
+			$query = $pdo->prepare("SELECT * FROM comments WHERE station = ? ORDER BY id DESC");
 			$query->execute([$_GET['sid']]);
 			$comments = $query->fetchAll();
 			// compute the average score
@@ -131,33 +131,65 @@ if (isset($_GET['sid'])) {
 					<!-- Comment section -->
 					<h5>User Opinion</h5>
 
-
-					<?php foreach($comments as $comment) : ?>
+					<?php if(isset($_SESSION["username"])) : ?>
 						<!-- .opinion-pane gives us a nice-looking comment box. -->
 						<div class="row opinion-pane">
 							<div class="col-12">
 								<!-- Upper row will have username and rating. -->
 								<div class="row">
 									<div class="col-md-7">
-										@<?php echo $users[$comment['author']]; ?>
+										@<?php echo $_SESSION["username"]; ?>
 									</div>
 									<div class="col-md-5">
-										Rates this line <?php echo $comment['rating']; ?>/5
+										Rates this line <input type="number" id="rating" value="3" min="0" max="5">/5
 									</div>
 								</div>
+								<div class="row" style="height:10px"></div>
 								<!-- Second row has their comments. -->
 								<div class="row">
 									<div class="col-10 offset-1">
-										<p><?php echo $comment['text']; ?></p>
+										<textarea class="form-control" id="review" placeholder="(Optional) your comment here..."></textarea>
 									</div>
 								</div>
-								<!-- Last row has buttons (like the comment, report abuse) -->
+								<div class="row" style="height:10px"></div>
 								<div class="row">
-									<div class="col-4">
-										<a href="#">Report Abuse</a>
+									<div class="col-2 offset-10">
+										<button type="submit" class="btn btn-secondary" onclick="ajaxSubmitReview(<?php echo $_GET['sid']; ?>);">Post</button>
 									</div>
-									<div class="offset-4 col-4">
-										<a href="#" class="float-right">Like (3)</a>
+								</div>
+								<div class="row" id="errors"></div>
+							</div>
+						</div>
+					<?php endif; ?>
+
+					<?php foreach($comments as $comment) : ?>
+						<div id="all_comments">
+							<!-- .opinion-pane gives us a nice-looking comment box. -->
+							<div class="row opinion-pane">
+								<div class="col-12">
+									<!-- Upper row will have username and rating. -->
+									<div class="row">
+										<div class="col-md-7">
+											@<?php echo $users[$comment['author']]; ?>
+										</div>
+										<div class="col-md-5">
+											Rates this line <?php echo $comment['rating']; ?>/5
+										</div>
+									</div>
+									<!-- Second row has their comments. -->
+									<div class="row">
+										<div class="col-10 offset-1">
+											<p><?php echo $comment['text']; ?></p>
+										</div>
+									</div>
+									<!-- Last row has buttons (like the comment, report abuse) -->
+									<div class="row">
+										<div class="col-4">
+											<a href="#">Report Abuse</a>
+										</div>
+										<div class="offset-4 col-4">
+											<a href="#" class="float-right">Like (3)</a>
+										</div>
 									</div>
 								</div>
 							</div>

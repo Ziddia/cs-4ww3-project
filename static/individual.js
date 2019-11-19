@@ -1,3 +1,49 @@
+// function to submit a new review to the current page
+function ajaxSubmitReview(station) {
+  var rating = $("#rating").val();
+  var review = $("#review").val();
+
+  $.post('review_post.php', {station: station, rating: rating, review: review}).done(function (data) {
+        var js = JSON.parse(data);
+        if (js.success) {
+          $("#all_comments").prepend(`
+            <div class="row opinion-pane">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-md-7">
+                      @` + js.user + `
+                    </div>
+                    <div class="col-md-5">
+                      Rates this line ` + rating + `/5
+                    </div>
+                  </div>
+                  <!-- Second row has their comments. -->
+                  <div class="row">
+                    <div class="col-10 offset-1">
+                      <p>` + review + `</p>
+                    </div>
+                  </div>
+                  <!-- Last row has buttons (like the comment, report abuse) -->
+                  <div class="row">
+                    <div class="col-4">
+                      <a href="#">Report Abuse</a>
+                    </div>
+                    <div class="offset-4 col-4">
+                      <a href="#" class="float-right">Like (3)</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `);
+        } else {
+          for (var i = 0; i < js.errors.length; i++) {
+            var err = js.errors[i];
+            $("#errors").append("<p>" + err + "</p>");
+          }
+        }
+    });;
+}
+
 // variable to store the map object coming from google maps API
 var map;
 // variable to show information when user clicks on a marker on the map
