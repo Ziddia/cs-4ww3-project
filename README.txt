@@ -2,7 +2,7 @@ Authors:
 	Daniel Brunton 400024814
 	Joshua Smith 400013323
 
-	We are 4ww3 students and we are doing Add-on task 2
+	We are 4ww3 students
 
 Links:
 	Live address: https://transitrating.tk
@@ -10,6 +10,8 @@ Links:
 
 Notes on validation:
 	There are some validation issues with the Bootstrap CSS framework. The benefits provided by Bootstrap (the grid system, the responsive design, and the consistent UI) outweigh whatever problems there may be with its validation. Most of the validation errors seem to be due to platform-specific components that aren't parsing properly.
+
+ASSIGNMENT 1 BONUS TASK BELOW
 
 Add-on Task 2 writeup:
 	i) Two different sized images of the map image are provided. One for large desktops and a small resolution image for tablets and phones.
