@@ -47,6 +47,9 @@ if (!empty($_POST["obj_url"]) && strlen($_POST["obj_url"]) > 100) {
 }
 
 // TODO: validate latitude and longitude. do any necessary validations on image and video.
+if (!is_numeric($_POST["obj_lat"]) || !is_numeric($_POST["obj_long"])) {
+	$errs[] = "Object latitude or longitude was not provided as a numeric value.";
+}
 
 // only proceed if no validation errors were caught
 if (count($errs) === 0) {
@@ -124,6 +127,15 @@ if (count($errs) === 0) {
 			$lat = $_POST["obj_lat"];
 			$long = $_POST["obj_long"];
 
+			// escape lt/gt characters
+			$name = str_replace('<', '&lt;', $name);
+			$name = str_replace('>', '&gt;', $name);
+
+			$type = str_replace('<', '&lt;', $type);
+			$type = str_replace('>', '&gt;', $type);
+
+			// lat/long are already validated w. is_numeric so they must not contain lt/gt
+
 			$desc = "";
 			if (isset($_POST["obj_desc"])) $desc = $_POST["obj_desc"];
 
@@ -135,6 +147,18 @@ if (count($errs) === 0) {
 
 			$url = "";
 			if (isset($_POST["obj_url"])) $url = $_POST["obj_url"];
+
+			$desc = str_replace('<', '&lt;', $desc);
+			$desc = str_replace('>', '&gt;', $desc);
+
+			$city = str_replace('<', '&lt;', $city);
+			$city = str_replace('>', '&gt;', $city);
+
+			$province = str_replace('<', '&lt;', $province);
+			$province = str_replace('>', '&gt;', $province);
+
+			$url = str_replace('<', '&lt;', $url);
+			$url = str_replace('>', '&gt;', $url);
 
 			// insert into the database
 			$pdo->prepare("INSERT INTO stations (`name`, `desc`, `type`, latitude, longitude, city, province, url, image, video, uploader) VALUES (?,?,?,?,?,?,?,?,?,?,?)")->execute([$name,$desc,$type,$lat,$long,$city,$province,$url,$key,$key_vid,$user_id->id]);
