@@ -22,6 +22,10 @@ if ($_POST["rating"] < 0 || $_POST["rating"] > 5) {
 	$errs[] = "Rating is invalid, it must be between 0 and 5.";
 }
 
+// escape gt/lt characters
+$review = str_replace('<', '&lt;', $_POST["review"]);
+$review = str_replace('>', '&gt;', $review);
+
 // only proceed if no validation errors were caught
 if (count($errs) === 0) {
 	// get the variables for database connection
@@ -47,7 +51,7 @@ if (count($errs) === 0) {
 				$errs[] = "Something went wrong while retrieving your profile from the database.";
 			} else {
 				// inserts the new rating into the database
-				$pdo->prepare("INSERT INTO comments (author, station, rating, text) VALUES (?,?,?,?)")->execute([$user_id->id, $_POST["station"], $_POST["rating"], $_POST["review"]]);
+				$pdo->prepare("INSERT INTO comments (author, station, rating, text) VALUES (?,?,?,?)")->execute([$user_id->id, $_POST["station"], $_POST["rating"], $review]);
 			}
 		}
 	} catch (\PDOException $e) {

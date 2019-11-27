@@ -20,7 +20,7 @@ function ajaxSubmitReview(station) {
                   <!-- Second row has their comments. -->
                   <div class="row">
                     <div class="col-10 offset-1">
-                      <p>` + review + `</p>
+                      <p>` + review.replace(/</g, '&lt;').replace(/>/g, '&gt;') + `</p>
                     </div>
                   </div>
                   <!-- Last row has buttons (like the comment, report abuse) -->

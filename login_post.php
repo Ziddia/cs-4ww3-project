@@ -22,7 +22,7 @@ if (count($errs) === 0) {
 		$hash_query->execute([$_POST["username"]]);
 		$hash = $hash_query->fetch(PDO::FETCH_OBJ);
 		if (!isset($hash->hash)) {
-			$errs[] = "Failed to log in, username or password is not valid.a";
+			$errs[] = "Failed to log in, username or password is not valid.";
 		} else {
 			// verify the hash
 			$valid = password_verify($_POST["password"], $hash->hash);
@@ -39,10 +39,6 @@ if (count($errs) === 0) {
 		$errs[] = "An error occurred while communicating with the database.";
 		throw new \PDOException($e->getMessage(), (int)$e->getCode());
 	}
-}
-
-if (count($errs) !== 0) {
-	echo var_dump($errs);
 }
 
 ?>
