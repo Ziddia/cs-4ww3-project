@@ -13,6 +13,9 @@ if(!isset($_SESSION)) session_start();
 // array to store all validation errors in
 $errs = [];
 
+echo $_POST;
+echo implode(" ", $_POST);
+
 // confirm the user is logged in
 if (!isset($_SESSION["username"])) {
 	$errs[] = "You must be logged in to submit a station.";
@@ -43,7 +46,7 @@ if (!empty($_POST["obj_city"]) && strlen($_POST["obj_city"]) > 30) {
 }
 
 if (!empty($_POST["obj_url"]) && strlen($_POST["obj_url"]) > 100) {
-	$errs[] = "Station name is too long, please ensure it is less than 60 characters long.";
+	$errs[] = "Station url is too long, please ensure it is less than 100 characters long.";
 }
 
 // TODO: validate latitude and longitude. do any necessary validations on image and video.

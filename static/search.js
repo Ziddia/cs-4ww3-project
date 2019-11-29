@@ -1,6 +1,9 @@
 // variable to store the map object coming from google maps API
 var map;
+// reference to places service
 var service;
+
+
 var latitude;
 var longitude;
 
@@ -13,15 +16,24 @@ function getLocation() {
 }
 
 function showPosition(position) {
-	latitude = position.coords.latitude;
-	longitude = position.coords.longitude;
-	$("#location_results").html("<p class=\"my-2\">Search by Latitude: " + latitude + ", Longitude: " + longitude + "</p>")
+	$("#lat").val(position.coords.latitude);
+	$("#long").val(position.coords.longitude);
+	console.log($("#lat") + " " + $("#long"));
+	//latitude = position.coords.latitude;
+	//longitude = position.coords.longitude;
+	//$("#location_results").html("<p class=\"my-2\">Search by Latitude: " + latitude + ", Longitude: " + longitude + "</p>")
 }
 
 function validate() {
 	// grab contents of the form by their IDS, with jquery
 	var search = $("#search").val();
 	var rating = $("#rating").val();
+	console.log(search);
+	// check if search is greater than 100 characters
+	if (search.length > 100) {
+		$("#form_error").html("<p>Search cannot be more than 100 characters long.</p>");
+		return false;
+	}
 
 	// check if rating is within 0 <= rating <= 6
 	// this should never raise an error because the input is a list of options

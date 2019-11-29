@@ -22,14 +22,14 @@
 	<!-- Main page content -->
 	<section>
 		<h3>Search Transit Stations</h3>
-		<form action="#" method="GET" class="header-buffer" onsubmit="return validate();">
+		<form action="search_results.php" method="GET" class="header-buffer" onsubmit="return validate();">
 			<div class="form-group">
-				<label>Keyword Search</label>
-				<input type="text" class="form-control" id="search">
+				<label for="search">Keyword Search</label>
+				<input type="text" class="form-control" name="search" id="search">
 			</div>
 			<div class="form-group">
 				<label for="rating" class="col-form-label">Rating</label>
-				<select class="form-control" id="rating">
+				<select class="form-control" name="rating" id="rating">
 					<option>0</option>
 					<option>1</option>
 					<option>2</option>
@@ -39,8 +39,16 @@
 				</select>
 			</div>
 			<div class="form-group">
+				<label for="lat" class="col-form-label">Latitude</label>
+				<input type="number" class="form-control" name="lat" id="lat" step="any">
+			</div>
+			<div class="form-group">
+				<label for="long" class="col-form-label">Longitude</label>
+				<input type="number" class="form-control" name="long" id="long" step="any"></input>
+			</div>
+			<div class="form-group">
 				<button type="button" class="btn btn-secondary col-md-2" onclick="getLocation()">Search Near Me</button>
-				<div id="location_results"></div>
+				<!--<div id="location_results"></div>-->
 			</div>
 			<div id="form_error"></div>
 			<button type="submit" class="btn btn-secondary">Search</button>
