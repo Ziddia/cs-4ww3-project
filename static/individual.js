@@ -80,9 +80,14 @@ function initMap() {
           zoom: 15
         });
 
+  var jsonData = JSON.parse($("#sql_results").text());
+  var lat = parseInt(jsonData.latitude);
+  var long = parseInt(jsonData.longitude);
+  var name = jsonData.name;
+
   // the place we are searching for, this part will need to be dynamic eventually.
 	var request = {
-      query: 'EMERSON at ROYAL',
+      query: name,
       fields: ['name', 'geometry'],
     };
 

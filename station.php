@@ -6,6 +6,8 @@ $aws_base = "https://s3.ca-central-1.amazonaws.com/transitrating.tk-uploads/";
 // errors loading the station
 $errs = [];
 
+$station_data = "";
+
 // check if a specific station has been requested
 if (isset($_GET['sid'])) {
     // get the data for this station from the DB
@@ -25,6 +27,8 @@ if (isset($_GET['sid'])) {
 			// SID is wrong, handle
 			$errs[] = "The station ID provided is invalid, you may have followed a bad link.";
 		} else {
+			// store the station data
+			$station_data = json_encode($station);
 			// fetch the comments for this station
 			$query = $pdo->prepare("SELECT * FROM comments WHERE station = ? ORDER BY id DESC");
 			$query->execute([$_GET['sid']]);
@@ -92,6 +96,9 @@ if (isset($_GET['sid'])) {
 	?>
 
 	<?php include("includes/login-modal.php"); ?>
+
+	<!-- Hidden tag used to transfer the query results to javascript file so that it can populate the map -->
+	<div id="sql_results" style="display:none"><?php echo $station_data; ?></div>
 
 	<!-- Main page content -->
 	<section>
