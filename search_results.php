@@ -137,9 +137,12 @@ if (count($errs) === 0) {
 					</thead>
 					<tbody>
 						<?php
-						foreach ($results as $row) {		echo "<tr>";
+						foreach ($results as $row) {
+							if (!isset($row['rating']) || $row['rating'] == '') $rating = "No Ratings";
+							else $rating = strval($row['rating']) . "/5";
+							echo "<tr>";
 							echo "<th scope=\"row\">".$row['id']."</th>";
-							echo "<td>".$row['rating']."/5</td>";
+							echo "<td>".$rating."</td>";
 							echo "<td>".$row['name']."</td>";
 							echo "<td>".$row['type']."</td>";
 							echo "<td>".$row['latitude']."° N, ".$row['longitude']."° W</td>";
