@@ -9,11 +9,12 @@ if (empty($_POST["reg_password"]) || empty($_POST["confirm"]) || empty($_POST["u
 }
 
 // default value for subscription
-$subscribe = false;
+// using 0/1 instead of true/false bc mariadb on linux doesnt handle php true/false properly in queries
+$subscribe = 0;
 
 // check if the subscription checkbox was passed in post (only happens if it's checked)
 if (!empty($_POST["subscribe"])) {
-	$subscribe = true;
+	$subscribe = 1;
 }
 
 // confirm that password and confirmation match
