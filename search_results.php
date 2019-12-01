@@ -24,8 +24,17 @@ if (!empty($_GET["search"]) && strlen($_GET["search"]) > 100) {
 	$errs[] = "Search term is too long, please ensure it is less than 100 characters long.";
 }
 
-if (!is_numeric($_GET["lat"]) || !is_numeric($_GET["long"])) {
-	$errs[] = "Latitude and Longitude must be numeric values.";
+if ((is_null($_GET["lat"]) && !is_null($_GET["long"])) || (!is_null($_GET["lat"]) && is_null($_GET["long"]))) {
+
+	$errs[] = "Both Latitude and Longitude must be given.";
+
+} else {
+	if (!empty($_GET["lat"]) && !empty($_GET["long"])) {
+		if (!is_numeric($_GET["lat"]) || !is_numeric($_GET["long"])) {
+
+			$errs[] = "Latitude and Longitude must be numeric values.";
+		}
+	}
 }
 
 // user must specify both lat and long
@@ -36,7 +45,7 @@ if ((empty($lat) && !empty($long)) || (!empty($lat) && empty($long))) {
 if (count($errs) === 0) {
 	// get the variables for database connection
 	include('includes/db.php');
-
+	
 	try {
 		// establish connection
 		$pdo = new PDO($dsn, $user, $pass, $options);
@@ -44,47 +53,34 @@ if (count($errs) === 0) {
 		// set to lowercase so that the search is case insensitive
 		$search = strtolower($_GET["search"]);
 		$rating = $_GET["rating"];
-		$lat = $_GET["lat"];
-		$long = $_GET["long"];
-		if (empty($lat) && empty($long)) {
-			$lat = 0;
-			$long = 0;
-		}
 
-		echo "ECHO lat long <br>";
-		echo $lat." ".$long."<br>";
+		$lat = trim($_GET["lat"]);
+		$long = trim($_GET["long"]);
 
 		// escape lt/gt characters
 		$search = str_replace('<', '&lt;', $search);
 		$search = str_replace('>', '&gt;', $search);
 
 		// lat/long are already validated w. is_numeric so they must not contain lt/gt or any special characters
-		echo "CHECK IF SHIts EMPTY";
-		if (empty($lat) && empty($long)) {
-			$lat = 0.0;
-			$long = 0.0;
-			echo "SHITS EMPTY";
+		if (empty($lat) && $lat !== "0" && empty($long) && $long !== "0") {
 			// query the database without check for lat/long
-			$sql = "SELECT id, rating, `name`, `type`, latitude, longitude, city, province FROM stations INNER JOIN (SELECT comments.station, ROUND(Avg(comments.rating), 1) as rating FROM comments INNER JOIN stations ON stations.id=comments.station GROUP BY comments.station) AS station_ratings ON stations.id=station_ratings.station WHERE (LOWER(`name`) like \"%".$search."%\" OR LOWER(`type`) like \"%".$search."%\" OR LOWER(city) like \"%".$search."%\" OR LOWER(province) like \"%".$search."%\") AND (rating >= ".$rating.".) GROUP BY stations.id";
+			$sql = "SELECT id, rating, `name`, `type`, latitude, longitude, city, province FROM stations LEFT JOIN (SELECT comments.station, ROUND(Avg(comments.rating), 1) as rating FROM comments INNER JOIN stations ON stations.id=comments.station GROUP BY comments.station) AS station_ratings ON stations.id=station_ratings.station WHERE (LOWER(`name`) like \"%".$search."%\" OR LOWER(`type`) like \"%".$search."%\" OR LOWER(city) like \"%".$search."%\" OR LOWER(province) like \"%".$search."%\") AND (rating >= ".$rating." OR rating IS NULL) GROUP BY stations.id";
 
+			$statement = $pdo->prepare($sql);
+			$statement->execute();
+			$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else {
-			echo "SHTIS NOT EMPTY";
 			// query the database
-			$sql = "SELECT id, rating, `name`, `type`, latitude, longitude, city, province FROM stations INNER JOIN (SELECT comments.station, ROUND(Avg(comments.rating), 1) as rating FROM comments INNER JOIN stations ON stations.id=comments.station GROUP BY comments.station) AS station_ratings ON stations.id=station_ratings.station WHERE (LOWER(`name`) like \"%".$search."%\" OR LOWER(`type`) like \"%".$search."%\" OR LOWER(city) like \"%".$search."%\" OR LOWER(province) like \"%".$search."%\") AND ((latitude < ".$lat."+0.25 AND latitude > ".$lat."-0.25) OR (longitude < ".$long."+0.25 AND longitude > ".$long."-0.25)) AND (rating >= ".$rating.") GROUP BY stations.id";
+			$sql = "SELECT id, rating, `name`, `type`, latitude, longitude, city, province FROM stations LEFT JOIN (SELECT comments.station, ROUND(Avg(comments.rating), 1) as rating FROM comments INNER JOIN stations ON stations.id=comments.station GROUP BY comments.station) AS station_ratings ON stations.id=station_ratings.station WHERE (LOWER(`name`) like \"%".$search."%\" OR LOWER(`type`) like \"%".$search."%\" OR LOWER(city) like \"%".$search."%\" OR LOWER(province) like \"%".$search."%\") AND ((latitude < ".$lat."+0.25 AND latitude > ".$lat."-0.25) OR (longitude < ".$long."+0.25 AND longitude > ".$long."-0.25)) AND (rating >= ".$rating." OR rating IS NULL) GROUP BY stations.id";
+
+			$statement = $pdo->prepare($sql);
+			$statement->execute();
+			$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		foreach ($pdo->query($sql) as $row) {
-			echo $row['id'] . "\t";
-			echo $row['rating'] . "\t";
-			echo $row['name'] . "\t";
-			echo $row['type'] . "\t";
-			echo $row['latitude'] . "\t";
-			echo $row['longitude'] . "\t";
-			echo $row['city'] . "\t";
-			echo $row['province'] . "\t";
-		}
-		//$sid = $pdo->
+		// encode the results as JSON in a hidden div for use by the js
+		$json = json_encode($results);
 	} catch (\PDOException $e) {
 		$errs[] = "An error occurred while communicating with the database.";
 		throw new \PDOException($e->getMessage(), (int)$e->getCode());
@@ -117,6 +113,10 @@ if (count($errs) === 0) {
 
 	<?php include("includes/login-modal.php"); ?>
 
+	<!-- Hidden tag used to transfer the query results to javascript file so that it can populate the map -->
+	<div id="sql_results" style="display:none"><?php echo $json ?></div>
+
+	<?php if(count($errs) === 0) { ?>
 	<!-- Main page content -->
 	<section>
 		<div class="table-div p-3">
@@ -136,10 +136,8 @@ if (count($errs) === 0) {
 						</tr>
 					</thead>
 					<tbody>
-
 						<?php
-							foreach ($pdo->query($sql) as $row){
-							echo "<tr>";
+						foreach ($results as $row) {		echo "<tr>";
 							echo "<th scope=\"row\">".$row['id']."</th>";
 							echo "<td>".$row['rating']."/5</td>";
 							echo "<td>".$row['name']."</td>";
@@ -149,41 +147,8 @@ if (count($errs) === 0) {
 							echo "<td>".$row['province']."</td>";
 							echo "<td><a href=\"station.php?sid=".$row["id"]."\">Station Page</a></td>";
 							echo "</tr>";
-							}
+						}
 						?>
-						<!--<tr>
-							<th scope="row">1</th>
-							<td>0/5</td>
-							<td>Union Subway</td>
-							<td>Subway</td>
-							<td>43.6452° N, 79.3806° W</td>
-							<td>Toronto</td>
-							<td>ON</td>
-							 these temp links are just here to provide a way to get to the individual sample page 
-								once javascript/data is added users will be able to click on a row and go to the corresponding 
-								individual page
-							<td><a href="individual_sample.html">individual sample</a></td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>0/5</td>
-							<td>Queen St West At Ossington Ave</td>
-							<td>Tram</td>
-							<td>43.6443° N, 79.4187° W</td>
-							<td>Toronto</td>
-							<td>ON</td>
-							<td><a href="individual_sample.html">individual sample</a></td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>3/5</td>
-							<td>EMERSON at ROYAL</td>
-							<td>Bus</td>
-							<td>43.2533° N, 79.9216° W</td>
-							<td>Hamilton</td>
-							<td>ON</td>
-							<td><a href="individual_sample.html">individual sample</a></td>
-						</tr>-->
 					</tbody>
 				</table>
 			</div>
@@ -194,13 +159,27 @@ if (count($errs) === 0) {
 			<div id="map" class="map"></div>			
 		</div>
 	</section>
+	<?php } else { ?>
+	<section>
+		<?php
+			// if any errors occurred, list them for the user.
+			// otherwise, report that registration was successful.
+			if (count($errs) > 0) {
+				echo "<p>Error Occured</p>";
+				foreach ($errs as $err) {
+					echo "<p>".$err."</p>";
+				}
+			} else {
+				echo "<p>Submission completed successfully. Click <a href=\"station.php?sid=".$sid."\">here</a> to view your submission.</p>";
+			}
+		?>
+	</section>
+	<?php } ?>
 
 	<footer>
 		<h5>Transit Rating</h5>
 		<h6>Helping You Get Places</h6>
 	</footer>
-
-	<script src="static/search_results.js"></script>
 
 	<!-- jQuery/Bootstrap scripts -->
 	<script
@@ -213,6 +192,8 @@ if (count($errs) === 0) {
 	<!-- Google Maps API -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0YtpSWfJsdHE5dxZtwUx2TBhOlnM0r0&callback=initMap&libraries=places"
     async defer></script>
+
+    <script src="static/search_results.js"></script>
 </body>
 
 </html>

@@ -13,9 +13,6 @@ if(!isset($_SESSION)) session_start();
 // array to store all validation errors in
 $errs = [];
 
-echo $_POST;
-echo implode(" ", $_POST);
-
 // confirm the user is logged in
 if (!isset($_SESSION["username"])) {
 	$errs[] = "You must be logged in to submit a station.";

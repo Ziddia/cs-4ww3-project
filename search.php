@@ -53,9 +53,6 @@
 			<div id="form_error"></div>
 			<button type="submit" class="btn btn-secondary">Search</button>
 			
-			<!-- temporary a tag to redirect to a sample search results page -->
-			<a href="results_sample.html"><h6>Sample Results Page</h6></a>
-			
 		</form>
 	</section>
 

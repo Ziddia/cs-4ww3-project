@@ -28,7 +28,9 @@ function validate() {
 	// grab contents of the form by their IDS, with jquery
 	var search = $("#search").val();
 	var rating = $("#rating").val();
-	console.log(search);
+	var lat = $("#lat").val();
+	var long = $("#long").val();
+
 	// check if search is greater than 100 characters
 	if (search.length > 100) {
 		$("#form_error").html("<p>Search cannot be more than 100 characters long.</p>");
@@ -39,6 +41,12 @@ function validate() {
 	// this should never raise an error because the input is a list of options
 	if (!(0 <= rating) || !(rating <= 6)) {
 		$("#form_error").html("<p>Rating must be between 0 and 6 inclusive.</p>");
+		return false;
+	}
+
+	//check to make sure either no lat/long or both provided
+	if ((lat !== "" && long === "") || (lat === "" && long !== "")) {
+		$("#form_error").html("<p>Must provide either both Latitude and Longitude or neither.</p>");
 		return false;
 	}
 
