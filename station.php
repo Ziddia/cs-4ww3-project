@@ -153,8 +153,8 @@ if (isset($_GET['sid'])) {
 								</div>
 								<div class="row" style="height:10px"></div>
 								<div class="row">
-									<div class="col-2 offset-10">
-										<button type="submit" class="btn btn-secondary" onclick="ajaxSubmitReview(<?php echo $_GET['sid']; ?>);">Post</button>
+									<div class="col-2 offset-8">
+										<button type="submit" style="margin-bottom: 1.5vh;" class="btn btn-secondary" onclick="ajaxSubmitReview(<?php echo $_GET['sid']; ?>);">Post</button>
 									</div>
 								</div>
 								<div class="row" id="errors"></div>
