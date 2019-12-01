@@ -23,7 +23,7 @@
 	<!-- Main page content -->
 	<section>
 		<div class="pt-3">
-			<h2>A Rating Web Application for Transit Stations</h2>
+			<h2>A Rating Web Application for Transit Stations</h2	>
 			<h3>Created by Joshua Smith & Daniel Brunton</h3>
 		</div>
 
