@@ -1,13 +1,5 @@
 <?php
 
-require 'includes/aws.phar';
-
-// don't know if I need this
-// aws setup stuff
-use Aws\S3\S3Client;
-
-use Aws\Exception\AwsException;
-
 // start session if it is not already started
 if(!isset($_SESSION)) session_start();
 
@@ -94,7 +86,7 @@ if (count($errs) === 0) {
 <html lang="en">
 
 <head>
-	<title>Transit Rating - Sample Results</title>
+	<title>Transit Rating - Search Results</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="static/base.css">
@@ -132,7 +124,7 @@ if (count($errs) === 0) {
 							<th scope="col">Lat/Long</th>
 							<th scope="col">City</th>
 							<th scope="col">Province</th>
-							<th scope="col">Temp Link</th>
+							<th scope="col">Station Link</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -172,8 +164,6 @@ if (count($errs) === 0) {
 				foreach ($errs as $err) {
 					echo "<p>".$err."</p>";
 				}
-			} else {
-				echo "<p>Submission completed successfully. Click <a href=\"station.php?sid=".$sid."\">here</a> to view your submission.</p>";
 			}
 		?>
 	</section>
